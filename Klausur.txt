@@ -1,0 +1,50 @@
+
+
+
+Kapitel: 6 X
+
+Aktuelles ÜBlatt 5
+
+
+100% Themen:									Auf der FS?
+Kap1: 
+- Modulo									X
+- Mengen + Operatoren auf Mengen						X
+
+Kap3:
+- Pseudocode (selber erzeugen + rekursion)					X
+- Komplexität (worst, best, avg)						X Schranken
+- Ermitteln einer Aufwandsfunktion						X
+- O Omega Theta Funktion							X
+- Laufzeit eines Algs(for, while Schleife) + Reglen für O-Notation		Noch nachschauen
+- O-Ausdruck									Hä?
+
+Kap4:
+- Rekursion (Code rekursiv schreiben können)					X
+- Fibonacci Zahlen								X
+
+Ka5:
+- Felder, verkettete Listen							Listen malen?
+
+Kap6:
+--> Insertion Sort!! (nur Idee verstehen) <---					nochmal anschauen
+
+Kap7:
+- Bäume: wie kann man einen Baum systematisch ??? ?Traversieren?	
+ Pre Order, Post Order, Inorder (Arbeitsweise)
+---> !HASHTABELLEN! <--- mit Divisionsmethode!!					GUT ANSCHAUEN!
+
+Kap8:
+- Heapsort: Max-Heap, Min-Heap  (heapify kommt nicht dran)
+
+Kap9:
+- Binärer Suchbaum (Höhe, Tiefe)
+
+Kap10:
+- Breitensuche, Tiefensuche (einer von beiden kommt dran)
+- Minimaler Spannbaum (Kruskal, Greedy Prinzip)
+
+Kap11:
+- Datenkompression: Huffmancode (Erstellen eines Code Baumes als Binärbaum
+			Laufzeit: O(n log n)
+
