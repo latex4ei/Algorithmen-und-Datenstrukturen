@@ -38,9 +38,9 @@ Eigenschaften von $R \subseteq A \times B$:
 
 $R$ heißt partielle Ordnung, falls $R$ reflexiv, antisymmetrisch und transitiv ist.\\
 $R$ heißt Äquivalenzrelation, falls $R$ reflexiv, symmetrisch und transitiv ist.\\
-Eine partielle Ordnung hießt totale Ordnung, falls alle Elemente miteinander vergleichbar sind.\\
+Eine partielle Ordnung heißt totale Ordnung, falls alle Elemente miteinander vergleichbar sind.\\
 
-\subsection{Sonstiges:}
+\subsection{Sonstiges}
 Auf/Abrunden: $x-1 < \lfloor x \rfloor \le x \le \lceil x \rceil < x+1$\\
 $\lfloor 3,7 \rfloor = 3$ \qquad $\lceil 3,1 \rceil = 4$ \qquad $\lceil \frac{a}{b} \rceil \le \frac{a+(b-1)}{b}$\\[0.5em]
 Modulo \boxed{ a\% n = a\mod n = a - \left(\left\lfloor \frac{a}{n} \right\rfloor \cdot n\right) }\\
@@ -56,22 +56,6 @@ Wort über $A$: $w=a_1 a_2 \ldots a_k$
 $A^k := \iset{w}{|w|=k}$\\
 $A^{*} = \bigcup\limits_{k=0}^\infty A^k$\\
 $A^{+} = \bigcup\limits_{k=1}^\infty A^k$
-
-\subsection{Pseudocode}
-Abstraktion von verschiedenen Programmiersprachen.\\
-1\ \ //Kommentar: einige Pseudocode Strukturen:\\
-2\ \ i=j=5 \hspace{10em}//Gleichzeitiges Zuweisen des Wertes 5\\
-3\ \ \textbf{for} $i = 0$ \{\textbf{to}$|$\textbf{downto}\} $end$ (\textbf{by} $steps$) \textbf{do}\\
-4\ \ \quad {Schleifenanweisungen} \qquad //Einrückung beachten!\\
-5\ \ \textbf{while} $i < struct.attribut$ \textbf{do}\\
-6\ \ \quad \textsc{Function}($par_1,par_2$) \quad \ //Funktionen werden \textsc{Groß} geschrieben\\
-7\ \ \quad \textbf{if} $i == 0$ \textbf{oder} $i == 1$\\
-8\ \ \quad \quad \textbf{print} "i ist null oder eins!"\\
-9\ \ \quad \textbf{elseif} $i < 3$ \textbf{und} $i > 0$\\
-10\ \quad \quad \textbf{print} "i ist zwei!"\\
-11\ \quad \textbf{else}\\
-12\ \quad \quad \textbf{print} "i ist " $i$\\
-13\ \textbf{return} $A[j]$ \quad // A ist ein Feld\\
 
 \iffalse
 %TODO
@@ -111,18 +95,18 @@ Die Qualität eines Algorithmus ergibt sich aus seiner Effizienz, Komplexität, 
 \textbf{Deterministisch:} Die nächste, anzuwendende Regel ist zu jedem Zeitpunkt definiert.\\
 \subsection{Algorithmenmuster (Design Patterns)}
 \subsubsection{Divide and Conquer}
-rekursive Rückführung eines zu lösenden Problems auf mehrere identische Probleme mit kleinerer Eingabemenge\\
+Rekursive Rückführung eines zu lösenden Problems auf mehrere identische Probleme mit kleinerer Eingabemenge bis zum Trivialfall\\
 \textbf{Beispiele:} Binäre Suche, MergeSort, Quicksort
 \subsubsection{Greedy}
-schrittweise Erweiterung der Lösung ausgehend von Startlösung unter Berücksichtigung des bestmöglichsten Schrittes\\
+Schrittweise Erweiterung der Lösung ausgehend von Startlösung unter Berücksichtigung des bestmöglichsten Schrittes\\
 \textbf{Beispiele:} Berechnung Wechselgeld, Glasfasernetz
 \subsubsection{Brute Force}
-erzeuge alle in Frage kommenden Kandidaten und suche besten aus\\
+Erzeuge alle in Frage kommenden Kandidaten und suche besten aus\\
 \subsubsection{Backtracing}
-systematische Suchtechnik, um Lösungsraum vollständig abzuarbeiten\\
-\textbf{Beispiele:} Labyrinth
+Systematische Suchtechnik, um Lösungsraum vollständig abzuarbeiten\\
+\textbf{Beispiele:} Labyrinth (mit frühem Abbrechen von falschen Lösungspfaden)
 \subsubsection{Dynamisches Programmieren}
-statt Rekursion berechnet man vom kleinsten Teilproblem "aufwärts". Zwischenergebnisse werden in Tabellen gespeichert\\
+Statt Rekursion berechnet man vom kleinsten Teilproblem "aufwärts". Zwischenergebnisse werden in Tabellen gespeichert\\
 \textbf{Beispiele:} Fibonacci
 \subsection{Effizienz}
 Die Effizienz eines Algorithmus ist seine Sparsamkeit bezüglich der Ressourcen, Zeit und Speicherplatz, die er zur Lösung eines festgelegten Problems beansprucht.
@@ -146,13 +130,13 @@ Notation & Grenzwertdef. (falls existent) & Wachstum \\
 $g \in \mathcal O (f)$ & $0 \leq \lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} < \infty$ & nicht schneller als $f$\\
 $g \in \Omega (f)$ & $0 < \lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} \leq \infty$ & nicht langsamer als $f$\\
 $g \in \Theta (f)$ & $0 < \lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} < \infty$ & gleich wie $f$\\
-$g \in \mathcal o (f)$ & $\lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} = 0$ & langsamer als $f$\\
+$g \in o(f)$ & $\lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} = 0$ & langsamer als $f$\\
 $g \in \omega (f)$ & $\lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} = \infty$ & schneller als $f$\\
 \end{tabular}
 
 \subsubsection{Rechenregeln}
 
-$c* f(n) = \mathcal O(f(n))$ für eine beliebige Konst. $c$\\
+$c \cdot f(n) = \mathcal O(f(n))$ für eine beliebige Konst. $c$\\
 $\mathcal O(f(n)) + \mathcal O(g(n)) = \mathcal O(f(n) + g(n))$\\
 $\mathcal O(f(n)) \cdot \mathcal O(g(n)) = \mathcal O(f(n)g(n))$\\
 $\mathcal O(f(n)) + \mathcal O(g(n)) = \mathcal O(max\{f(n),g(n)\})$\\
@@ -180,7 +164,7 @@ $\Theta (2^n)$ & exponentiell & Traveling Salesman\\
 \textbf{Substitutionsmethode:} Lösung raten, einsetzen und mit Induktion beweisen.\\
 \\
 \textbf{Mastertheorem:}\\
-Ggegeben: \boxed{ T(n) = a \cdot T\left(\frac{n}{b}\right) + f(n)$ mit $a \ge 1, b > 1 }\\ 
+Gegeben: \boxed{ T(n) = a \cdot T\left(\frac{n}{b}\right) + f(n)$ mit $a \ge 1, b > 1 }\\ 
 $a\ge1$: Anzahl der Unterprobleme innerhalb einer Rekursionstiefe(meist 1 oder 2) \\
 $b>1$: Faktor um den jedes Unterproblem verkleinert ist.\\
 $f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösungen entsteht(nicht rekursiver Anteil, von $T(n)$ unabhängig.\\
@@ -205,7 +189,7 @@ $f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösunge
 
 	\subsection{Rekursion}
 	Eine Funktion ruft sich selbst auf bis ein Abbruchereignis eintritt. Danach werden die Rückgabewerte in umgekerhrter Reihenfolge verkettet.\\
-	Beispiel Fakultät: $fac(n) = n \cdot fac(n-1), fac(1)=1$\\
+	Beispiel Fakultät: $\text{fac}(n) = n \cdot \text{fac}(n-1), \text{fac}(1)=1$\\
 
 %TODO Logische Werte und Verknüpfungen
 \section{Primitive (Elementare) Datentypen}
@@ -222,10 +206,10 @@ $f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösunge
 	\subsection{Negative Zahlen im Zweierkomplement}
 	%TODO Negative Zahlen?
 	\subsection{Gleitkommadarstellung nach IEEE 754}
-	$Wert = (-1)^s \cdot 2^{e-127} \cdot 1.f$\\
+	$\text{Wert} = (-1)^s \cdot 2^{e-127} \cdot 1.f$\\
 	$s$: Vorzeichen, $e$: Exponent, $f$: Mantisse\\ 
 	\\[0.5em]
-	Spezialwerte: $Wert = 0 \Leftrightarrow e=0$ \qquad $Wert = \infty \Leftrightarrow e=255$ \\
+	Spezialwerte: $\text{Wert} = 0 \Leftrightarrow e=0$ \qquad $\text{Wert} = \infty \Leftrightarrow e=255$ \\
 	Bitverteilung(single/double):\\
 	\begin{tabular}{|c|c|c|} \hline 
 		$s(1)$ & \quad $e(8/11)$ \quad\qquad & \qquad\qquad\qquad\ $f(23/52)$ \qquad\qquad\qquad\qquad \\ \hline
@@ -290,7 +274,7 @@ DEQUEUE(Q)\\
 5\ return x\\
 \end{multicols*}
 
-\textbf{Priority Queue:} Queue mit zugeordnetem Schlüssel, Entfernen von Element mit minimalem Schlüssel, Sepicherung in fast vollständigem Binärbaum\\
+\textbf{Priority Queue:} Queue mit zugeordnetem Schlüssel, Entfernen von Element mit minimalem Schlüssel, Speicherung in fast vollständigem Binärbaum\\
 
 \subsection{Felder}
 \subsubsection{Vorteile und Nachteile}
@@ -300,13 +284,13 @@ DS & Vorteile & Nachteile \\
 Array & direkter Zugriff mit $A[i]$ & Verlängern aufwendig \\
  & sequ. Durchlaufen einfach & Hinzufügen löschen aufwendig \\
 \brule
-Verkettete & sequ. Durchlaufen einfach & Zugriff auf i-tes Element\\
-Liste & dynamische Länge & zusätzlicher Speicher für Zeiger\\
+Linked & sequ. Durchlaufen einfach & Zugriff auf i-tes Element\\
+List & dynamische Länge & zusätzlicher Speicher für Zeiger\\
  & Einfügen/Löschen einfach & \\
 \brule
-Doppelt & Durchlauf beide Richtungen & zusätzlicher Speicher für Referenzen\\
-verkettete & Einfügen/Löschen einfacher & Referenzverw. aufändig\\
-Liste & & \\
+Double & Durchlauf beide Richtungen & zusätzlicher Speicher für Referenzen\\
+Linked & Einfügen/Löschen einfacher & Referenzverw. aufändig\\
+List & & \\
 \end{tabular}
 
 \subsection{Union Find}
@@ -451,7 +435,7 @@ Laufzeit: $\mathcal O(\log n)$, geeignet für statische große Mengen\\
 
 \section{Graphen}
 % ==========================================================================================================
-$G = (E, V)$, mit E: Kante, V: Knoten\\
+$G = (E, V)$, mit E: Kanten, V: Knoten\\
 \textbf{Adjazenzmatrix} $(V \times V)$: $1$ oder $0$ für Verbindung.\\
 Bei ungerichtetem Graph symmetrisch, sinnvoll wenn Graph fast vollständig\\
 \textbf{Adjazenzliste:} Für jeden Knoten alle Nachbarknoten angeben mit Startknoten $s$\\
@@ -461,7 +445,7 @@ Bei ungerichtetem Graph symmetrisch, sinnvoll wenn Graph fast vollständig\\
 
 \subsection{Eigenschaften}
 $v$ \textbf{adjazent} zu $u$: $(u,v) \in E$ bzw. $\{u, v\} \in E$ für $u, v \in V$\\
-\textbf{Inzident}: Knoten $v$ und Kante $e = (x, v)$ bzw. $e = \{x, v\}$\\
+\textbf{Inzident}: Knoten $v$ und Kante $e = (x, v)$ bzw. $e = \{x, v\}$ mit $v, x \in V$\\
 
 Pfad: Folge von miteinander verbundenen Knoten\\
 einfacher Pfad: alle Knoten sind paarweise verschieden\\
@@ -554,7 +538,7 @@ Begriffe:\\
 Ein Binärbaum ist vollständig, wenn $\forall v: deg(v) = 2 \ \lor \ deg(v)=0$\\ 
 Falls Höhe $k$, dann gilt: $2^{k+1} - 1$ Knoten und $2^k$ Blätter.\\ 
 \\
-Bedeutung: Verdopllung der Eingabegröße, mit logarithmische($ld n$) Vergrößerung der Struktur.\\
+Bedeutung: Verdopllung der Eingabegröße, mit logarithmischer Vergrößerung der Struktur.\\
 Binärbaum als verkettete Liste: Knoten $x$ mit $links[x],rechts[x], parent[x], key[x]$\\
 
 Balancierter Suchbaum: Höhe des Baumes ist immer in $\mathcal O(\log n)$\\
@@ -571,12 +555,8 @@ Post-order: linker Teilbaum $\rightarrow$ rechter Teilbaum $\rightarrow$ Wurzel\
 \textbf{Breitensuche(BFS)} \\V
 on einem Startknoten $S$ werden alle Knoten mit Abstand $k$ durchsucht. Der Suchradius breitet sich aus.\\
 BREITENSUCHE(v)\\
-1.	queue.enqueue(v);\\
-2.	while (!queue.empty())\\
-3.		v = queue.dequeue();\\
-4.		print(v.val));\\
-5.		if (v $\rightarrow$ left) queue.enqueue(v$\rightarrow$left);\\
-6.		if (v $\rightarrow$ right) queue.dequeue(v$\rightarrow$right);\\ \\
+%TODO Code\\
+ \\
 \textbf{Tiefensuche(DFS)}\\
 Laufzeit: $\Theta (\abs V + \abs E)$\\
 Von einem Knoten werden alle Nachfolger rekursiv durchsucht. Mehrere Verzweigungsmöglichkeiten werden zwischengespeichert.\\
@@ -584,6 +564,7 @@ Von einem Knoten werden alle Nachfolger rekursiv durchsucht. Mehrere Verzweigung
 2. DFS-VISIT(a): Finde rekursiv alle Nachfolgerknoten von $a$ und markiere sie als durchsucht.\\
 
 \subsubsection{Heap-Sort}
+%TODO Bild von Baum einfügen
 \textbf{Heap-Datenstruktur:} fast vollständiger Binärbaum mit Indizierung von links nach rechts und von oben nach unten.\\
 Max-Heap: Wurzel hat den größten Wert, Min-Heap: Wurzel hat den kleinsten Wert.
 
