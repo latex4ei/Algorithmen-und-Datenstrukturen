@@ -192,6 +192,7 @@ $f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösunge
 	Beispiel Fakultät: $\text{fac}(n) = n \cdot \text{fac}(n-1), \text{fac}(1)=1$\\
 
 %TODO Logische Werte und Verknüpfungen
+\iffalse
 \section{Primitive (Elementare) Datentypen}
 \begin{tabular}{llcc}
 		Typ & Speicher & signed & unsigned \\ \hline
@@ -205,6 +206,7 @@ $f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösunge
 \end{tabular}
 	\subsection{Negative Zahlen im Zweierkomplement}
 	%TODO Negative Zahlen?
+	
 	\subsection{Gleitkommadarstellung nach IEEE 754}
 	$\text{Wert} = (-1)^s \cdot 2^{e-127} \cdot 1.f$\\
 	$s$: Vorzeichen, $e$: Exponent, $f$: Mantisse\\ 
@@ -221,6 +223,7 @@ $f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösunge
 		\item Kein Vergleich möglich
 		\item Keine Zinsberechnung
 	\end{itemize}
+\fi
 
 \section{Datenstrukturen}
 % ==========================================================================================================
@@ -256,9 +259,9 @@ Basieren auf dem LIFO(last in first out) Prinzip.\\
 \texttt{*back}: zeigt auf das Ende der Warteschlange.\\
 \texttt{enqueue(x)}: x am Ende der Warteschlange hinzufügen.\\
 \texttt{dequeue()}: Erstes Element aus der Warteschlange nehmen.\\
+\textbf{Implementierung} z.B. als abgewandelte Linked List.
 }
-.\\
-
+\iffalse
 \begin{multicols*}{2}
 ENQUEUE(Q, x)\\
 1\ Q[ende[Q]] = x\\
@@ -273,6 +276,7 @@ DEQUEUE(Q)\\
 4\ \quad else kopf [Q] = länge[Q] + 1\\
 5\ return x\\
 \end{multicols*}
+\fi
 
 \textbf{Priority Queue:} Queue mit zugeordnetem Schlüssel, Entfernen von Element mit minimalem Schlüssel, Speicherung in fast vollständigem Binärbaum\\
 
@@ -288,7 +292,7 @@ Linked & sequ. Durchlaufen einfach & Zugriff auf i-tes Element\\
 List & dynamische Länge & zusätzlicher Speicher für Zeiger\\
  & Einfügen/Löschen einfach & \\
 \brule
-Double & Durchlauf beide Richtungen & zusätzlicher Speicher für Referenzen\\
+Double & Durchlauf beide Richtungen & zusätzlicher Speicher für Ptr\\
 Linked & Einfügen/Löschen einfacher & Referenzverw. aufändig\\
 List & & \\
 \end{tabular}
@@ -327,7 +331,7 @@ $INSERTIONSORT(A)$\\
 6\ \qquad 	$j = j - 1$\\
 7\ \quad 	$A[j] = key$
 
-\subsection{Quicksort}
+\subsection{Quicksort $\O(n^2)$, avg: $\O(n\log n)$}
 \begin{enumerate}
 	\item Wähle ein Pivotelement, welches die Liste in zwei Hälften teilt. 
 	\item Sortiere die Liste so um, das Elemente die kleiner als das Pivotelement in der einen Hälfte und größere in der anderen Hälfte sind. 
@@ -353,17 +357,12 @@ $PARTITION(A, p, r)$\\
 8\ return $i + 1$\\
 \end{multicols*}
 
-\textbf{Laufzeit:} im Mittel loglinear, worst case quadratisch\\
-
-\subsection{Mergesort}
+\subsection{Mergesort $T(n) = 2T(\fr{n}{2}) + \O(n) \Rightarrow \O(n\log n)$}
 Feld in der Mitte rekursiv halbieren, bis Feldlänge = 1\\
 Teilsortierte Felder zusammenfügen(Reißverschluss)\\
 
 %TODO Codebeispiel
-
-\textbf{Laufzeit:} loglinear, \textbf{Rekurrenzgleichung:} $T(n) = 2T(\fr{n}{2}) + O(n)$.
-
-
+\iffalse
 \subsection{Heapsort}
 
 \begin{multicols}{2}
@@ -393,6 +392,7 @@ MAX-HEAPIFY (A, i)\\
 10. \qquad MAX-HEAPIFY (A, maximum)\\
 
 \end{multicols}
+\fi
 
 \subsection{Laufzeiten und Speicherbedarf von Sortieralgorithmen}
 Die Laufzeit bzw. Taktzyklen in Abhängigkeit einer (meist großen) Eingabemenge $n$.\\
@@ -420,6 +420,7 @@ Laufzeit: $\mathcal O(n)$, geeignet für statische kleine Mengen\\
 Laufzeit: $\mathcal O(\log n)$, geeignet für statische große Mengen\\
 \textbf{binärer Suchbaum} für dynamische Mengen\\
 
+\iffalse
 	\subsection{String-matching}
 	In einer Zeichenfolge $T[0 ... n]$ wird ein Muster $P[0...m]$ gesucht.\\ 
 	\\
@@ -428,7 +429,7 @@ Laufzeit: $\mathcal O(\log n)$, geeignet für statische große Mengen\\
 	- Bilde modulu mit einer Primzahl $q$ (Vorfiltern): $T[s ... s+m] \% q$\\
 	- Bei Übereinstimmung des Restes: genauere Prüfung.\\
 	Laufzeit: $\mathcal O(m+n)$ bei $m<<n$: $\mathcal O(n)$\\
-
+\fi
 
 
 
@@ -436,7 +437,7 @@ Laufzeit: $\mathcal O(\log n)$, geeignet für statische große Mengen\\
 \section{Graphen}
 % ==========================================================================================================
 $G = (E, V)$, mit E: Kanten, V: Knoten\\
-\textbf{Adjazenzmatrix} $(V \times V)$: $1$ oder $0$ für Verbindung.\\
+\textbf{Adjazenzmatrix} $(V \times V)$: $1$ oder $0$ für Verbindung oder Gewicht.\\
 Bei ungerichtetem Graph symmetrisch, sinnvoll wenn Graph fast vollständig\\
 \textbf{Adjazenzliste:} Für jeden Knoten alle Nachbarknoten angeben mit Startknoten $s$\\
 
@@ -467,7 +468,7 @@ Anzahl der Kanten an $v$ heißt Grad: $deg(v)$\\
 zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 
 	\subsection{Minimaler Spannbaum}
-	Kruskal-Algorithmus:
+	Kruskal-Algorithmus ($\O(m\log n)$):
 	\begin{enumerate}\itemsep-2pt
 		\item Sortiere alle Kanten aufsteigend nach Gewicht.
 		\item Wähle immer die nächst schwerere Kante, wenn sie keine Schleife bildet.
@@ -484,7 +485,7 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 	Muss für jede Kante nur genau einmal überprüft werden.
 	\begin{multicols*}{2}
 	BELLMANFORD(s) \\
-	Laufzeit: $\mathcal O (mn)$\\
+	Laufzeit: $\O(m\cdot n)$\\
 	1.	foreach $v \in V$\\
 	2.	\quad	v$\rightarrow$key = $\infty$;\\
 	3.	\quad	v$\rightarrow$par = NULL;\\
@@ -505,6 +506,7 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 	
 	\columnbreak
 	APSP - Floyd Warshall \\
+	Laufzeit: $\O(m\cdot n^2)$
 	1.	foreach (u,v) $\in$ V\\
 	2. \quad	d[u,v] = $\infty$\\
 	3. \quad	pred[u,v] = NULL;\\
@@ -552,22 +554,22 @@ In-order: linker Teilbaum $\rightarrow$ Wurzel $\rightarrow$ rechter Teilbaum\\
 Post-order: linker Teilbaum $\rightarrow$ rechter Teilbaum $\rightarrow$ Wurzel\\
 
 \subsection{Suchen in Graphen}
-\textbf{Breitensuche(BFS)} \\V
-on einem Startknoten $S$ werden alle Knoten mit Abstand $k$ durchsucht. Der Suchradius breitet sich aus. Neue Knoten kommen in eine Queue an zu besuchenden Knoten.\\
+\textbf{Breitensuche(BFS)} $\Theta (\abs V + \abs E)$\\
+Von einem Startknoten $S$ werden alle Knoten mit Abstand $k$ durchsucht. Der Suchradius breitet sich aus. Neue Knoten kommen in eine Queue an zu besuchenden Knoten.\\
 BREITENSUCHE(v)\\
 %TODO Code\\
  \\
-\textbf{Tiefensuche(DFS)}\\
-Laufzeit: $\Theta (\abs V + \abs E)$\\
+\textbf{Tiefensuche(DFS)} $\Theta (\abs V + \abs E)$\\
 Von einem Knoten werden alle Nachfolger rekursiv durchsucht. Mehrere Verzweigungsmöglichkeiten werden zwischengespeichert.\\
 1. DFS(G): Suche im Graph G den nächsten unbesuchten Knoten $a$. Rufe DFS-VISIT(a) auf.\\
 2. DFS-VISIT(a): Finde rekursiv alle Nachfolgerknoten von $a$ und markiere sie als durchsucht.\\
 
-\subsubsection{Heap-Sort}
+\subsection{Heap}
 %TODO Bild von Baum einfügen
-\textbf{Heap-Datenstruktur:} fast vollständiger Binärbaum mit Indizierung von links nach rechts und von oben nach unten.\\
-Max-Heap: Wurzel hat den größten Wert, Min-Heap: Wurzel hat den kleinsten Wert.
-
+Fast vollständiger Binärbaum mit Indizierung von links nach rechts und von oben nach unten.
+Wert eines Knotens ist immer kleiner bzw. größer als Werte der Kinder. 
+Max-Heap: Wurzel hat den größten Wert, Min-Heap: Wurzel hat den kleinsten Wert.\\
+\textbf{Heap-Sort:}\\
 1. Erzeuge Max-Heap aus $A$\\
 2. Wähle $|A| / 2$ als Starknoten, da größter Knoten mit $deg > 1$\\
 3. Betrachte Knoten $i$ und seine beiden Kinder $2i$ und $2i+1$ \\
@@ -602,15 +604,15 @@ Input: Polynom P vom Grad N-1, Koeffizenten C\\
 Output: $R[l]$ enthält $P[W_N^l]$\\
 FFT($C,N,W_N$)\\
 1\qquad if (N == 1) return C;\\
-2\qquad $C_{odd}$ = [C[1], C[3], ..., C[N-1]];\\
-3\qquad $C_{even}$ = [C[0], C[2], ..., C[N-2]];\\
-4\qquad $R_{odd}$ = FFT($C_{odd}$, $N/2$, $W_N^2$);\\
-5\qquad $R_{even}$ = FFT($C_{even}$, $N/2$, $W_N^2$);\\
+2\qquad $C_\text{odd}$ = [C[1], C[3], ..., C[N-1]];\\
+3\qquad $C_\text{even}$ = [C[0], C[2], ..., C[N-2]];\\
+4\qquad $R_\text{odd}$ = FFT($C_\text{odd}$, $N/2$, $W_N^2$);\\
+5\qquad $R_\text{even}$ = FFT($C_\text{even}$, $N/2$, $W_N^2$);\\
 6\qquad $W = 1$; // = $W_N^0$\\
 7\qquad for $l = 0$ to $N/2-1$\\
-8\qquad \qquad $R[l] = R_{even}[l] + W * R_{odd}[l]$;\\
-9\qquad \qquad $R[l + N/2] = R_{even}[l] - W * R_{odd}[l]$;\\
-10\quad\  \qquad $W *= W_N$; // $= W_N^l$\\
+8\qquad \qquad $R[l] = R_\text{even}[l] + W * R_\text{odd}[l]$;\\
+9\qquad \qquad $R[l + N/2] = R_\text{even}[l] - W * R_\text{odd}[l]$;\\
+10\quad\  \qquad $W \ *\!\!= W_N$; // $= W_N^l$\\
 11\quad\  return R;\\
 Für DFT: $W_N = e^{-j\frac{2\pi}{N}}$ und Ergebnis durch $N$ dividieren; $\O(n \log n)$
 
