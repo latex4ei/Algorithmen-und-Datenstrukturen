@@ -5,6 +5,9 @@
 \usepackage{multirow}
 \usepackage{latexnew}
 
+\renewcommand{\t}{\texttt}
+\newcommand{\f}{{\bfseries}}
+
 
 % Dokumentbeginn
 % ======================================================================
@@ -15,11 +18,6 @@
 \vspace{-4mm}
 \begin{multicols*}{4}
 	\fstitle{Algorithmen und\\ Datenstrukturen}
-
-	\emphbox{
-	\textbf{Wichtiger Hinweis}
-	\\ Diese Formelsammlung ist noch in der Entwicklung und nicht prüfungstauglich ! \\ Allerdings würden wir uns über Unterstützung freuen das zu ändern. Wer Lust hat kann uns über das Kontaktformular auf www.latex4ei.de erreichen.
-	}
 
 \subsection{Mengenalgebra}
 Potenzmenge: Die Menge aller Teilmengen. $\mathcal P(A) = \iset{U}{U \subseteq A}$\\
@@ -236,31 +234,31 @@ Eine Datenstruktur besitzt:\\
 	\item Menge von Operationen auf die Werte
 \end{itemize}
 
-\subsection{Wichtige Datenstrukturen}
-Wichtige Datenstrukturen:\\
-\begin{itemize}
-	\item Felder, Listen, Stack, Queue
-	\item Bäume, Graphen
-\end{itemize}
-
 \subsection{Stapel (Stack)}
+\iffalse
 \parbox{4cm}{\includegraphics{./img/inf/stack.pdf}}
-\pbox{3cm}{
+\pbox{3cm}{\fi
 Basieren auf dem LIFO(last in first out) Prinzip.\\
-\texttt{push(a)}: Legt ein neues Element \texttt{a} oben auf den Stack und erhöht \texttt{*top}\\
-\texttt{pop()}: Nimmt das oberste Element vom Stack und reduziert \texttt{*top}\\	
-\texttt{*top}: Ist ein Zeiger der auf das oberste Element zeigt.\\
-}
+\begin{tabular}{ll}
+\t{push(a)}& Legt ein neues Element \t{a} oben auf den Stack\\
+\t{pop()}& Entfernt das oberste Element vom Stack\\	
+\t{top()}& Gibt das oberste Element vom Stack zurück.\\
+\end{tabular}\\
+\textbf{Implementierung:} entweder als Array (\t{top()} ist Zeiger auf letztes Element oder als Linked List (Jedes Element zeigt auf das Element darunter)\\
+%}
 
 \subsection{Warteschlange (Queue)}
+\iffalse
 \parbox{4cm}{ \includegraphics{./img/inf/queue.pdf} }
-\pbox{3cm}{
-\texttt{*front}: zeigt auf das erste Element der Warteschlage\\
-\texttt{*back}: zeigt auf das Ende der Warteschlange.\\
-\texttt{enqueue(x)}: x am Ende der Warteschlange hinzufügen.\\
-\texttt{dequeue()}: Erstes Element aus der Warteschlange nehmen.\\
-\textbf{Implementierung} z.B. als abgewandelte Linked List.
-}
+\pbox{3cm}{\fi
+\begin{tabular}{ll}
+\t{*front}& zeigt auf das erste Element der Warteschlage\\
+\t{*back}& zeigt auf das Ende der Warteschlange.\\
+\t{enqueue(x)}& x am Ende der Warteschlange hinzufügen.\\
+\t{dequeue()}& Erstes Element aus der Warteschlange nehmen und\\& zurückgeben.\\
+\end{tabular}
+\textbf{Implementierung} z.B. als abgewandelte Linked List, d.h. Zeiger auf erstes und letztes Element werden gespeichert und jedes Element zeigt auf das nächste.
+%}
 \iffalse
 \begin{multicols*}{2}
 ENQUEUE(Q, x)\\
@@ -280,8 +278,16 @@ DEQUEUE(Q)\\
 
 \textbf{Priority Queue:} Queue mit zugeordnetem Schlüssel, Entfernen von Element mit minimalem Schlüssel, Speicherung in fast vollständigem Binärbaum\\
 
-\subsection{Felder}
-\subsubsection{Vorteile und Nachteile}
+\subsection{Feld/Liste}
+\begin{tabular}{ll}
+\t{elementAt(i)}& Element in Position \t{i}\\
+\t{insert(d, i)}& Element \t{d} an Position \t{i} einfügen\\
+\t{erase(i)}& Element an Position \t{i} entfernen\\
+\t{size()}& Gibt Größe/Länge des Feldes zurück\\
+
+\end{tabular}
+
+\subsubsection{Vorteile und Nachteile der Implementierungen}
 \begin{tabular}{l|l|l}
 DS & Vorteile & Nachteile \\
 \brule
@@ -299,9 +305,12 @@ List & & \\
 
 \subsection{Union Find}
 Verwaltet die Partitionierung einer Menge in disjunkte Teilmengen.\\
-makeset(x): Fügt Element hinzu\\
-find(x): Findet die Menge, die x enthält\\
-union(x, y): Die Funktion fügt die beiden Mengen zusammen\\
+\begin{tabular}{ll}
+\t{makeset(x)}& Fügt Element hinzu\\
+\t{find(x)}& Findet die Menge, die x enthält\\
+\t{union(x, y)}& Die Funktion fügt die beiden Mengen zusammen\\
+\end{tabular}
+\textbf{Implementierung}: Als Linked List: Set = Liste. Jedes Element zeigt auf auf das nächste Element und zusätzlich auf das Set, in dem es enthalten ist. \t{find()} gibt einfach den Zeiger das enthaltende Set zurück. \t{union()} hängt die beiden Listen aneinander und überschreibt alle Zeiger auf eins der Sets. Auch Baumimplementierung ist möglich.
 
 \subsection{Augmentierung/Abänderung}
 \begin{enumerate}
@@ -322,14 +331,15 @@ out-of-place: Zusätzlicher Speicher abhängig von $n$ nötig. $S:\mathcal O(f(n
 	\item Solange es kleiner als seine Vorgänger ist, tausche es.
 \end{enumerate}
 Im schlimmsten Fall $\frac{n}{2}(n-1)$\\
-$INSERTIONSORT(A)$\\
-1\ for $i = 2$ to Länge(A) do\\
-2\ \quad $key \leftarrow A[i]$\\
-3\ \quad $j = i$\\
-4\ \quad while $j > 1$ and $A[j-1] > key$ do\\
-5\ \qquad 	$A[j] = A[j - 1]$\\
-6\ \qquad 	$j = j - 1$\\
-7\ \quad 	$A[j] = key$
+\t{INSERTIONSORT(A)\\
+1\ for i = 2 to Länge(A) do\\
+2\ \quad key $\leftarrow$ A[i]\\
+3\ \quad j = i\\
+4\ \quad while j $>$ 1 and A[j-1] $>$ key do\\
+5\ \qquad 	A[j] = A[j - 1]\\
+6\ \qquad 	j = j - 1\\
+7\ \quad 	A[j] = key
+}
 
 \subsection{Quicksort $\O(n^2)$, avg: $\O(n\log n)$}
 \begin{enumerate}
@@ -338,24 +348,27 @@ $INSERTIONSORT(A)$\\
 		Suche dazu mit zwei Laufvariablen das Feld ab, bis jede eine unpassende Variable gefunden hat, dann tausche diese.
 	\item Wiederhole die Schritte 1. bis 3. mit beiden Teillisten, bis jede Teilliste sortiert ist.
 \end{enumerate}
-\begin{multicols*}{2}
-$QUICKSORT (A, p, r)$\\
-1\ if $p < r$\\
-2\ then $q =$ $PARTITION ( A, p, r)$\\
-3\ $QUICKSORT (A, p, q - 1)$\\
-4\ $QUICKSORT (A, q + 1, r)$\\
 
-\columnbreak
-$PARTITION(A, p, r)$\\
-1\ $x = A[r]$ //Pivotelement\\
-2\ $i = p-1$ \\
-3\ for $j = p$ to $r - 1$\\
-4\ \quad if $A[j] \le x$\\
-5\ \qquad $i = i+1$\\
-6\ \qquad vertausche $A[i] \leftrightarrow A[j]$\\
-7\ vertausche $A[i + 1] \leftrightarrow A[r]$\\
-8\ return $i + 1$\\
-\end{multicols*}
+\parbox{4cm}{
+\t{QUICKSORT (A, p, r)\\
+1\ if p $<$ r \{\\
+2\ \quad q = PARTITION (A, p, r)\\
+3\ \quad QUICKSORT (A, p, q - 1)\\
+4\ \quad QUICKSORT (A, q + 1, r)\\
+5\ \}
+}}\hspace{-.5cm}
+\parbox{4cm}{
+\t{PARTITION(A, p, r)\\
+1\ x = A[r] //Pivotelement\\
+2\ i = p-1 \\
+3\ for j = p to r - 1 \{\\
+4\ \quad if A[j] $\le$ x \{\\
+5\ \qquad i = i+1\\
+6\ \qquad vertausche A[i] $\leftrightarrow$ A[j]\\
+7\ \quad \}\\
+8\ \}\\
+9\ vertausche A[i + 1] $\leftrightarrow$ A[r]\\
+10\ return i + 1\\}}
 
 \subsection{Mergesort $T(n) = 2T(\fr{n}{2}) + \O(n) \Rightarrow \O(n\log n)$}
 Feld in der Mitte rekursiv halbieren, bis Feldlänge = 1\\
@@ -483,8 +496,9 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 	Menge $Q$: Min-Prioritätswarteschlange mit den ungeprüften Knoten.\\ 
 	Relaxationsschritt: Überprüfe ob ein Umweg über einen anderen Knoten kürzer ist.\\
 	Muss für jede Kante nur genau einmal überprüft werden.
-	\begin{multicols*}{2}
-	BELLMANFORD(s) \\
+
+	\parbox{3.6cm}{
+	\t{BELLMANFORD(s) \\
 	Laufzeit: $\O(m\cdot n)$\\
 	1.	foreach $v \in V$\\
 	2.	\quad	v$\rightarrow$key = $\infty$;\\
@@ -498,15 +512,15 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 	10.	foreach (x,y) $\in$ E\\
 	11.	\quad	if (y$\rightarrow$key $>$ x$\rightarrow$key + w(x,y))\\
 	12.	\quad \quad		y$\rightarrow$par = x;\\
-	
+	\ \\
 	mark(x)\\
 	1.	if (x$\rightarrow$key != -$\infty$)\\
 	2.	\quad	x$\rightarrow$key = -$\infty$;\\
-	3.	\quad	for ((x,y) $\in$ E) mark(y)	\\
-	
-	\columnbreak
-	APSP - Floyd Warshall \\
-	Laufzeit: $\O(m\cdot n^2)$
+	3.	\quad	for ((x,y) $\in$ E) mark(y)\\
+	}}\hspace{-.2cm}
+	\parbox{3.5cm}{
+	\t{APSP - Floyd Warshall \\
+	Laufzeit: $\O(m\cdot n^2)$\\
 	1.	foreach (u,v) $\in$ V\\
 	2. \quad	d[u,v] = $\infty$\\
 	3. \quad	pred[u,v] = NULL;\\
@@ -520,9 +534,8 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 	11. \quad \quad	if (d[u,w] $>$ d[u,v] + d[v,w])\\
 	12.	\quad \quad \quad	d(u,w) = d(u,v) + d(v,w);\\
 	13. \quad \quad \quad	pred(u,w) = pred(v,w);\\
-				
+	}}
 	%TODO Bellman-Ford/Floyd Warshall Algorithmus S.413
-	\end{multicols*}
 
 \subsection{Bäume}
 ... sind spezielle Graphen mit einer Wurzel, Zweigen und Blätter.\\
@@ -535,7 +548,7 @@ Begriffe:\\
 \textbf{Höhe} $h(v)$: Längster Pfad von $v$ zu einem Blatt.\\   
 \textbf{Niveau:} Knoten mit gleicher Tiefe.\\
 %TODO Pfadkomprimierung S.452
-\subsection{Binärbaum}
+\subsection{Binärer Suchbaum (BSB)}
 ... ist ein geordneter Baum und $\forall v \in V:deg(v) \le 2$\\
 Ein Binärbaum ist vollständig, wenn $\forall v: deg(v) = 2 \ \lor \ deg(v)=0$\\ 
 Falls Höhe $k$, dann gilt: $2^{k+1} - 1$ Knoten und $2^k$ Blätter.\\ 
@@ -544,9 +557,39 @@ Bedeutung: Verdopllung der Eingabegröße, mit logarithmischer Vergrößerung de
 Binärbaum als verkettete Liste: Knoten $x$ mit $links[x],rechts[x], parent[x], key[x]$\\
 
 Balancierter Suchbaum: Höhe des Baumes ist immer in $\mathcal O(\log n)$\\
-AVL-Baum: Betrag der Differenz der Höhe der Teilbäume für jeden Knoten ist $\leq$ 1\\
-
-%TODO AVL-Bäume insert, delete
+\subsubsection{AVL-Baum}
+Betrag der Differenz der Höhe der Teilbäume für jeden Knoten ist $\leq$ 1\\
+AVL-Baum der Höhe $h$ enhält $F_{h+2}-1$ und höchstens $2^h - 1$.
+Blattknoten sind Dummys ohne Daten. Jeder interne Knoten hat genau zwei Kinder.
+Jeder Knoten speichert die Balance $v = h(\text{linkes Kind}) - h(\text{rechtes Kind})$\\
+\textbf{Rotationen:}\\
+\parbox{.5\linewidth}{
+Nach Links: Rechtes Kind wird Wurzel, Wurzel wird linkes Kind der neuen Wurzel. Altes linkes Kind der neuen Wurzel wird rechtes Kind der alten Wurzel.}\parbox{.5\linewidth}{\vspace{-.3cm}
+\includegraphics[width=\linewidth]{img/avl-rotate}}\\
+Nach Rechts: Umkehrung der Rotation nach links\\
+\textbf{Einfügen:}\\
+1. Knoten einfügen wie in normalen BSB\\
+2. Vom Elternknoten des eingefügten Knotens aufsteigend die Balance aller Knoten bis zur Wurzel prüfen und bei bedarf die AVL-Bedingung wiederherstellen\\
+\textbf{Löschen:}
+1. Knoten löschen wie im normalen BSB
+2. Vom Elternknoten des überbrücken Knotens aufsteigend die Balance aller Knoten bis zur Wurzel prüfen und bei Bedarf die AVL-Bedingung wiederherstellen\\
+\textbf{Balance eines Knoten wiederherstellen:}\\
+\t{
+ 1\ Balance(v)\\
+ 2\ if (v->balance == -2)\\
+ 3\ \quad if (v->right->balance $\in \{0, -1\}$)\\
+ 4\ \qquad   v = LeftRotate(v)\\
+ 5\ \quad else\\
+ 6\ \qquad   v->right = RightRotate(v->right)\\
+ 7\ \qquad   v = LeftRotate(v) // Doppelrotation\\
+ 8\ else\\
+ 9\ \quad if (v->left->balance $\in \{0, 1\}$)\\
+10\ \qquad   v = RightRotate(v)\\
+11\ \quad else\\
+12\ \qquad   v->left = LeftRotate(v->left)\\
+13\ \qquad   v = RightRotate(v) // Doppelrotation\\
+14\ return v\\
+}
 
 \subsubsection{Traversierung}
 Pre-order: Wurzel $\rightarrow$ linker Teilbaum $\rightarrow$ rechter Teilbaum\\
@@ -595,6 +638,7 @@ Transformation eines periodischen Signals aus dem Zeit in den Frequenzbereich $\
 \textbf{Theorem:}\\
 Jede periodische Funktion $x(t)$ mit Periode $T$ lässt sich als $\sum_{i=-\infty}^\infty \alpha_i e^{j\frac{2\pi}{T}t}$
 \subsection{Diskrete Fouriertransformation (DFT)}
+Fouriertransformation ist Integration über alle komplexen Exponentialfunktionen $\Rightarrow$ Näherung über Summe entlang des Einheitskreises (mit $n-ten$ Einheitswurzeln)\\
 \textbf{Geg.:} $x_0, ..., x_{N-1}$ mit $x_k = x(\frac{T}{N}k)$.
 Berechne \[\hat{x}_l = \dfrac{1}{N} \sum_{k=0}^{N-1}x_ke^{-j\frac{2\pi}{N}lk}\quad\forall l \in \{0,...,N-1\}\]
 $\Rightarrow$ DFT ist Polynomauswertung, einfache Implementierung $\O(n^2)$
@@ -602,18 +646,19 @@ $\Rightarrow$ DFT ist Polynomauswertung, einfache Implementierung $\O(n^2)$
 Schnelle Polynomauswertung mit $N=2^k$.\\
 Input: Polynom P vom Grad N-1, Koeffizenten C\\
 Output: $R[l]$ enthält $P[W_N^l]$\\
+\t{
 FFT($C,N,W_N$)\\
-1\qquad if (N == 1) return C;\\
-2\qquad $C_\text{odd}$ = [C[1], C[3], ..., C[N-1]];\\
-3\qquad $C_\text{even}$ = [C[0], C[2], ..., C[N-2]];\\
-4\qquad $R_\text{odd}$ = FFT($C_\text{odd}$, $N/2$, $W_N^2$);\\
-5\qquad $R_\text{even}$ = FFT($C_\text{even}$, $N/2$, $W_N^2$);\\
+1\qquad if ($N$ == 1) return C\\
+2\qquad $C_\text{odd} = [C[1], C[3], ..., C[N-1]]$\\
+3\qquad $C_\text{even} = [C[0], C[2], ..., C[N-2]]$\\
+4\qquad $R_\text{odd}$ = FFT($C_\text{odd}$, $N/2$, $W_N^2$)\\
+5\qquad $R_\text{even}$ = FFT($C_\text{even}$, $N/2$, $W_N^2$)\\
 6\qquad $W = 1$; // = $W_N^0$\\
 7\qquad for $l = 0$ to $N/2-1$\\
-8\qquad \qquad $R[l] = R_\text{even}[l] + W * R_\text{odd}[l]$;\\
-9\qquad \qquad $R[l + N/2] = R_\text{even}[l] - W * R_\text{odd}[l]$;\\
+8\qquad \qquad $R[l] = R_\text{even}[l] + W * R_\text{odd}[l]$\\
+9\qquad \qquad $R[l + N/2] = R_\text{even}[l] - W * R_\text{odd}[l]$\\
 10\quad\  \qquad $W \ *\!\!= W_N$; // $= W_N^l$\\
-11\quad\  return R;\\
+11\quad\  return $R$;\\}
 Für DFT: $W_N = e^{-j\frac{2\pi}{N}}$ und Ergebnis durch $N$ dividieren; $\O(n \log n)$
 
 \iffalse
