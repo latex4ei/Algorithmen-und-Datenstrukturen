@@ -558,20 +558,20 @@ Binärbaum als verkettete Liste: Knoten $x$ mit $links[x],rechts[x], parent[x], 
 
 Balancierter Suchbaum: Höhe des Baumes ist immer in $\mathcal O(\log n)$\\
 \subsubsection{AVL-Baum}
-Betrag der Differenz der Höhe der Teilbäume für jeden Knoten ist $\leq$ 1\\
-AVL-Baum der Höhe $h$ enhält $F_{h+2}-1$ und höchstens $2^h - 1$.
-Blattknoten sind Dummys ohne Daten. Jeder interne Knoten hat genau zwei Kinder.
+Betrag der Differenz der Höhe der Teilbäume für jeden Knoten ist $\leq$ 1.\\
+AVL-Baum der Höhe $h$ enthält mindestens $F_{h+2}-1$ und höchstens $2^h - 1$ Knoten.
+Blattknoten sind Dummys ohne Daten. Jeder interne Knoten hat genau zwei Kinder
 Jeder Knoten speichert die Balance $v = h(\text{linkes Kind}) - h(\text{rechtes Kind})$\\
 \textbf{Rotationen:}\\
 \parbox{.5\linewidth}{
-Nach Links: Rechtes Kind wird Wurzel, Wurzel wird linkes Kind der neuen Wurzel. Altes linkes Kind der neuen Wurzel wird rechtes Kind der alten Wurzel.}\parbox{.5\linewidth}{\vspace{-.3cm}
+Nach Links: Rechtes Kind wird Wurzel, Wurzel wird linkes Kind der neuen Wurzel, Altes linkes Kind der neuen Wurzel wird rechtes Kind der alten Wurzel.}\parbox{.5\linewidth}{\vspace{-.3cm}
 \includegraphics[width=\linewidth]{img/avl-rotate}}\\
 Nach Rechts: Umkehrung der Rotation nach links\\
 \textbf{Einfügen:}\\
 1. Knoten einfügen wie in normalen BSB\\
 2. Vom Elternknoten des eingefügten Knotens aufsteigend die Balance aller Knoten bis zur Wurzel prüfen und bei bedarf die AVL-Bedingung wiederherstellen\\
-\textbf{Löschen:}
-1. Knoten löschen wie im normalen BSB
+\textbf{Löschen:}\\
+1. Knoten löschen wie im normalen BSB\\
 2. Vom Elternknoten des überbrücken Knotens aufsteigend die Balance aller Knoten bis zur Wurzel prüfen und bei Bedarf die AVL-Bedingung wiederherstellen\\
 \textbf{Balance eines Knoten wiederherstellen:}\\
 \t{
