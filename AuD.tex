@@ -19,6 +19,7 @@
 \begin{multicols*}{4}
 	\fstitle{Algorithmen und\\ Datenstrukturen}
 
+\iffalse
 \subsection{Mengenalgebra}
 Potenzmenge: Die Menge aller Teilmengen. $\mathcal P(A) = \iset{U}{U \subseteq A}$\\
 Karthesisches Produkt: $A \times B = \iset{(a,b)}{a \in A \land b \in B}$\\
@@ -37,8 +38,9 @@ Eigenschaften von $R \subseteq A \times B$:
 $R$ heißt partielle Ordnung, falls $R$ reflexiv, antisymmetrisch und transitiv ist.\\
 $R$ heißt Äquivalenzrelation, falls $R$ reflexiv, symmetrisch und transitiv ist.\\
 Eine partielle Ordnung heißt totale Ordnung, falls alle Elemente miteinander vergleichbar sind.\\
+\fi
 
-\subsection{Sonstiges}
+\subsection{Allgemeines}
 Auf/Abrunden: $x-1 < \lfloor x \rfloor \le x \le \lceil x \rceil < x+1$\\
 $\lfloor 3,7 \rfloor = 3$ \qquad $\lceil 3,1 \rceil = 4$ \qquad $\lceil \frac{a}{b} \rceil \le \frac{a+(b-1)}{b}$\\[0.5em]
 Modulo \boxed{ a\% n = a\mod n = a - \left(\left\lfloor \frac{a}{n} \right\rfloor \cdot n\right) }\\
@@ -47,16 +49,16 @@ Gesucht $r$ mit $a = nq +r$ \qquad $0 \le r < n, q \in \mathbb Z$\\
 Fakultät: $n! = \begin{cases} n \cdot (n-1)! & \text{für } n \ge 1 \\ 1  & \text{für } n = 0 \end{cases}$\\
 Fibonacci-Zahl: $f(n) = \begin{cases} f(n-1) + f(n-2) & \text{für } n\ge 2\\ 1 & \text{für } n = 1 \\ 0 & \text{für } n = 0 \end{cases}$\\
 Fibonacci-Folge: $0,1,1,2,3,5,8,13,21,34,55,89,...$\\
-\\
+\iffalse
 Alphabet $A$: Endliche, nichtleere Menge von Elementen.\\
 $(A,<)$ heißt geordnetes Alphabet, wenn $<$ eine totale Ordnung auf A ist.\\
 Wort über $A$: $w=a_1 a_2 \ldots a_k$
 $A^k := \iset{w}{|w|=k}$\\
 $A^{*} = \bigcup\limits_{k=0}^\infty A^k$\\
 $A^{+} = \bigcup\limits_{k=1}^\infty A^k$
+\fi
 
 \iffalse
-%TODO
 \subsection{Newton-Verfahren}
 NEWTONS-METHOD$(x_0,f,f',\varepsilon)$\\
 $error = \varepsilon + 1$\\
@@ -77,9 +79,9 @@ Die Qualität eines Algorithmus ergibt sich aus seiner Effizienz, Komplexität, 
 \subsection{Darstellungsarten}
 \begin{itemize}
 %TODO Eventuell Bilder
-\item Flussdiagramm
-\item Struktogramm
-\item Programmiersprache
+\item Flussdiagramm (Statements als Blöcke, verzweigte Bedingungen)
+\item Struktogramm (Pseudocode, Bei Bedingung mehrere Spalten)
+\item Programmiersprache/Pseudocode
 \end{itemize}
 \subsection{Elementare Bausteine}
 \begin{itemize}
@@ -227,7 +229,7 @@ $f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösunge
 % ==========================================================================================================
 Eine Datenstruktur ist eine \textbf{logische Anordnung} von Daten
 mit \textbf{Zugriffs- und Verwaltungsmöglichkeiten} der \textbf{repräsentierten Informationen} über Operationen.\\
-Eine Datenstruktur besitzt:\\
+Eine Datenstruktur besitzt:
 \begin{itemize}\itemsep0pt
 	\item Menge von Werten
 	\item Literale zum Bezeichnen von Werten
@@ -311,6 +313,7 @@ Verwaltet die Partitionierung einer Menge in disjunkte Teilmengen.\\
 \t{union(x, y)}& Die Funktion fügt die beiden Mengen zusammen\\
 \end{tabular}
 \textbf{Implementierung}: Als Linked List: Set = Liste. Jedes Element zeigt auf auf das nächste Element und zusätzlich auf das Set, in dem es enthalten ist. \t{find()} gibt einfach den Zeiger das enthaltende Set zurück. \t{union()} hängt die beiden Listen aneinander und überschreibt alle Zeiger auf eins der Sets. Auch Baumimplementierung ist möglich.
+%TODO Baumimplementierung, Pfadkomprimierung
 
 \subsection{Augmentierung/Abänderung}
 \begin{enumerate}
@@ -547,7 +550,7 @@ Begriffe:\\
 \textbf{Tiefe} $d(v)$: Länge des Pfades von der Wurzel bis zum Knoten $v$.\\ 
 \textbf{Höhe} $h(v)$: Längster Pfad von $v$ zu einem Blatt.\\   
 \textbf{Niveau:} Knoten mit gleicher Tiefe.\\
-%TODO Pfadkomprimierung S.452
+
 \subsection{Binärer Suchbaum (BSB)}
 ... ist ein geordneter Baum und $\forall v \in V:deg(v) \le 2$\\
 Ein Binärbaum ist vollständig, wenn $\forall v: deg(v) = 2 \ \lor \ deg(v)=0$\\ 
@@ -598,8 +601,7 @@ Post-order: linker Teilbaum $\rightarrow$ rechter Teilbaum $\rightarrow$ Wurzel\
 
 \subsection{Suchen in Graphen}
 \textbf{Breitensuche(BFS)} $\Theta (\abs V + \abs E)$\\
-Von einem Startknoten $S$ werden alle Knoten mit Abstand $k$ durchsucht. Der Suchradius breitet sich aus. Neue Knoten kommen in eine Queue an zu besuchenden Knoten.\\
-BREITENSUCHE(v)\\
+Von einem Startknoten $S$ werden alle noch nicht durchsuchten Knoten mit Abstand $k$ durchsucht. Der Suchradius breitet sich aus. Neue Knoten kommen in eine Queue an zu besuchenden Knoten.\\
 %TODO Code\\
  \\
 \textbf{Tiefensuche(DFS)} $\Theta (\abs V + \abs E)$\\
