@@ -377,7 +377,39 @@ Im schlimmsten Fall $\frac{n}{2}(n-1)$\\
 Feld in der Mitte rekursiv halbieren, bis Feldlänge = 1\\
 Teilsortierte Felder zusammenfügen(Reißverschluss)\\
 
-%TODO Codebeispiel
+\parbox{4.5cm}{
+\t{mergeSort(List* a)\\
+1.	if (a$\rightarrow$length() $<$= 1)\\
+2.	\quad return a;\\
+2.	List* b = a$\rightarrow$half();\\
+3.	a = mergeSort(a);\\
+4.	b = mergeSort(b);\\
+5.	return merge(a,b);\\
+\\
+half()\\
+1.	Node* ptr = head;\\
+2.	for (0 bis length/2-2)\\
+3.	\quad ptr = ptr$\rightarrow$next;\\
+4.	List* L = new List(ptr$\rightarrow$next);\\
+5.	ptr$\rightarrow$next = NULL;\\
+6.	return L;
+}}\hspace{-1.25cm}
+\parbox{3.5cm}{
+\t{\textit{elAt() entspricht elementAt()}
+merge(a, b)\\
+1.	if (a$\rightarrow$empty())\\
+2.	\quad delete a; return b;\\
+3.	if (b$\rightarrow$empty())\\
+4.	\quad delete b; return a;\\
+5.	List* h;\\
+6.	if a$\rightarrow$elAt(0) $<$ b$\rightarrow$elAt(0)\\
+7.	\quad h = a; else h = b;\\
+8.	int d = h$\rightarrow$removeFront();\\
+9.	List L = merge(a,b);\\
+10.	L$\rightarrow$insertFront(d);\\
+11.	return L;\\
+}}
+
 \iffalse
 \subsection{Heapsort}
 
@@ -476,7 +508,32 @@ Anzahl der austretenden Kanten aus $v$ heißt Ausgangsgrad: $outdeg(v)$\\
 stark zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 starke Zusammenhangskomponente: stark Zusammenhängender Teilgraph\\
 
-%TODO Algorithmus S.427
+\parbox{3.6cm}{
+	Gibt alle zusammenhängenden\\ Komponenten eines gerichteten\\ Graphen aus\\
+	\t{dfsTarjan()\\
+	1.	dfsCount = 1;\\
+	2.	foreach v $\in$ V\\
+	3.	\quad v->state = initial;\\
+	4.	\quad v->parent = NULL;\\
+	5.	foreach s $\in$ V\\
+	6.	\quad if (s->state == initial)\\
+	7.	\quad \quad dfsVisitTarjan(s)\\
+}}\hspace{-.2cm}
+\parbox{3.5cm}{\t{dfsVisitTarjan(v) \\
+	1.	v->state = active;\\
+	2.	v->num = dfsCount++;\\
+	3.	\$.push(v);\\
+	4.	foreach (x $\in$ N[v])\\
+	5.	\quad if (x->state == initial)\\
+	6.	\quad \quad x->parent = v\\
+	7.	\quad \quad dfsVisitTarjan(x);\\
+	8.	if (cut parent edge of v)\\
+	9.	\quad repeat\\
+	10.	\quad \quad x = \$.pop();\\
+	11.	\quad \quad // add x to current component\\
+	11. \quad until (v == x) \\
+	12. \quad // print current component\\
+}}
 
 \subsubsection{Ungerichteter Graph}
 Anzahl der Kanten an $v$ heißt Grad: $deg(v)$\\
@@ -489,7 +546,28 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 		\item Sortiere alle Kanten aufsteigend nach Gewicht.
 		\item Wähle immer die nächst schwerere Kante, wenn sie keine Schleife bildet.
 	\end{enumerate}
-%TODO Prims Algorithmus S.404
+	
+	\parbox{3.6cm}{
+	\t{PrimMST(s) \\
+	1.	S = new PriorityQueue()\\
+	2.	foreach v $\in$ V\\
+	3.	\quad v$\rightarrow$key = $\infty$\\
+	4.	\quad v$\rightarrow$par = NULL;\\
+	5.	\quad v$\rightarrow$han = S$\rightarrow$insert(v);\\
+	6.	s$\rightarrow$key = 0;\\
+	7.	S$\rightarrow$decreaseKey(s$\rightarrow$han, 0);\\
+	}}\hspace{-.2cm}
+	\parbox{3.5cm}{
+	\t{8.	while(!S$\rightarrow$empty())\\
+	9.	\quad v = S$\rightarrow$extractMin();\\
+	10.	\quad foreach x $\in$ N[v]\\
+	11.	\quad \quad if (x$\rightarrow$key > w(v,x))\\
+	12.	\quad \quad \quad S$\rightarrow$decreaseKey(x$\rightarrow$han, \\
+	. \quad \quad \quad \quad \quad w(v,x));\\
+	13.	\quad \quad \quad x$\rightarrow$key = w(v,x);\\
+	14.	\quad \quad \quad x$\rightarrow$par = v;\\
+	}}
+	
 	\subsection{Kürzeste Wege}
 	SSSP (single source shortest path)\\
 	APSP (all pairs shortest path)\\
@@ -538,7 +616,6 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 	12.	\quad \quad \quad	d(u,w) = d(u,v) + d(v,w);\\
 	13. \quad \quad \quad	pred(u,w) = pred(v,w);\\
 	}}
-	%TODO Bellman-Ford/Floyd Warshall Algorithmus S.413
 
 \subsection{Bäume}
 ... sind spezielle Graphen mit einer Wurzel, Zweigen und Blätter.\\
@@ -602,7 +679,7 @@ Post-order: linker Teilbaum $\rightarrow$ rechter Teilbaum $\rightarrow$ Wurzel\
 \subsection{Suchen in Graphen}
 \textbf{Breitensuche(BFS)} $\Theta (\abs V + \abs E)$\\
 Von einem Startknoten $S$ werden alle noch nicht durchsuchten Knoten mit Abstand $k$ durchsucht. Der Suchradius breitet sich aus. Neue Knoten kommen in eine Queue an zu besuchenden Knoten.\\
-%TODO Code\\
+Code ähnlich wie DFS, nur Stack durch Queue ersetzt.\\
  \\
 \textbf{Tiefensuche(DFS)} $\Theta (\abs V + \abs E)$\\
 Von einem Knoten werden alle Nachfolger rekursiv durchsucht. Mehrere Verzweigungsmöglichkeiten werden zwischengespeichert.\\
