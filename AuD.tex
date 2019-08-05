@@ -92,7 +92,7 @@ Die Qualität eines Algorithmus ergibt sich aus seiner Effizienz, Komplexität, 
 \end{itemize}
 \subsection{Eigenschaften}
 \textbf{Determiniert:} Der Algorithmus liefert bei gleichen Startbedingungen das gleiche Ergebnis.\\
-\textbf{Deterministisch:} Die nächste, anzuwendende Regel ist zu jedem Zeitpunkt definiert.\\
+\textbf{Deterministisch:} Die nächste anzuwendende Regel ist zu jedem Zeitpunkt definiert.\\
 \subsection{Algorithmenmuster (Design Patterns)}
 \subsubsection{Divide and Conquer}
 Rekursive Rückführung eines zu lösenden Problems auf mehrere identische Probleme mit kleinerer Eingabemenge bis zum Trivialfall\\
@@ -106,14 +106,14 @@ Erzeuge alle in Frage kommenden Kandidaten und suche besten aus\\
 Systematische Suchtechnik, um Lösungsraum vollständig abzuarbeiten\\
 \textbf{Beispiele:} Labyrinth (mit frühem Abbrechen von falschen Lösungspfaden)
 \subsubsection{Dynamisches Programmieren}
-Statt Rekursion berechnet man vom kleinsten Teilproblem "aufwärts". Zwischenergebnisse werden in Tabellen gespeichert\\
+Statt Rekursion berechnet man vom kleinsten Teilproblem \dq aufwärts\dq. Zwischenergebnisse werden in Tabellen gespeichert\\
 \textbf{Beispiele:} Fibonacci
 \subsection{Effizienz}
 Die Effizienz eines Algorithmus ist seine Sparsamkeit bezüglich der Ressourcen, Zeit und Speicherplatz, die er zur Lösung eines festgelegten Problems beansprucht.
 
 \subsection{Komplexität}
 Schrankenfunktionen:
-$1<\log_{10}(n)<\ln(n)<\log_2(n)<\sqrt{n}<n<n\cdot \ln(n)<(\log n)! <n^2 < e^n < n! < n^n < 2^{2^n}$
+$1<\log_{10}(n)<\ln(n)<\log_2(n)<\sqrt{n}<n<n\cdot \ln(n)<(\log n)! <n^2 < e^n < n! < n^n < 2^{2^n}$\\
 Aber $\eset{\log_{10}(n), \ln (n), log_2 (n)} \in \Theta(\log n)$
 
 Landau-Symbole:\\
@@ -165,9 +165,9 @@ $\Theta (2^n)$ & exponentiell & Traveling Salesman\\
 \\
 \textbf{Mastertheorem:}\\
 Gegeben: \boxed{ T(n) = a \cdot T\left(\frac{n}{b}\right) + f(n)$ mit $a \ge 1, b > 1 }\\ 
-$a\ge1$: Anzahl der Unterprobleme innerhalb einer Rekursionstiefe(meist 1 oder 2) \\
-$b>1$: Faktor um den jedes Unterproblem verkleinert ist.\\
-$f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösungen entsteht(nicht rekursiver Anteil, von $T(n)$ unabhängig.\\
+$a\ge1$: Anzahl der Unterprobleme innerhalb einer Rekursionstiefe (meist 1 oder 2) \\
+$b>1$: Faktor, um den jedes Unterproblem verkleinert ist.\\
+$f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösungen entsteht (nicht rekursiver Anteil, von $T(n)$ unabhängig).\\
 \begin{itemize}
 	\item Falls $f(n) \in \mathcal{O}\left( n^{\log_b a - \varepsilon} \right)$\\
 		Dann ist $T(n) \in \Theta\left( n^{\log_b a} \right)$
@@ -183,7 +183,7 @@ $f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösunge
 	Ein Algorithmus heißt korrekt, wenn er für jede Eingabeinstanz mit korrekter Ausgabe terminiert.\\
 	Qualitätskontrolle:\\
 	\begin{itemize}\itemsep0pt
-		\item Überprüfung mit geeigneten Eingabedaten die alle möglichen Fälle testen. Deckt einzelne Fehler auf, aber fehlerfreiheit nicht garantiert.\\
+		\item Überprüfung mit geeigneten Eingabedaten die alle möglichen Fälle testen. Deckt einzelne Fehler auf, aber Fehlerfreiheit nicht garantiert.\\
 		\item Formaler Beweis mit Hoare-Kalkül etc. meist sehr schwierig.
 	\end{itemize}
 
@@ -240,7 +240,7 @@ Eine Datenstruktur besitzt:
 \iffalse
 \parbox{4cm}{\includegraphics{./img/inf/stack.pdf}}
 \pbox{3cm}{\fi
-Basieren auf dem LIFO(last in first out) Prinzip.\\
+Basieren auf dem LIFO (last in first out) Prinzip.\\
 \begin{tabular}{ll}
 \t{push(a)}& Legt ein neues Element \t{a} oben auf den Stack\\
 \t{pop()}& Entfernt das oberste Element vom Stack\\	
@@ -297,11 +297,11 @@ Array & direkter Zugriff mit $A[i]$ & Verlängern aufwendig \\
  & sequ. Durchlaufen einfach & Hinzufügen löschen aufwendig \\
 \brule
 Linked & sequ. Durchlaufen einfach & Zugriff auf i-tes Element\\
-List & dynamische Länge & zusätzlicher Speicher für Zeiger\\
+List & dynamische Länge & zusätzlicher Speicher für Ptr\\
  & Einfügen/Löschen einfach & \\
 \brule
-Double & Durchlauf beide Richtungen & zusätzlicher Speicher für Ptr\\
-Linked & Einfügen/Löschen einfacher & Referenzverw. aufändig\\
+Doubly & Durchlauf beide Richtungen & zusätzlicher Speicher für Ptr\\
+Linked & Einfügen/Löschen einfacher & Referenzverw. aufwändig\\
 List & & \\
 \end{tabular}
 
@@ -312,7 +312,7 @@ Verwaltet die Partitionierung einer Menge in disjunkte Teilmengen.\\
 \t{find(x)}& Findet die Menge, die x enthält\\
 \t{union(x, y)}& Die Funktion fügt die beiden Mengen zusammen\\
 \end{tabular}
-\textbf{Implementierung}: Als Linked List: Set = Liste. Jedes Element zeigt auf auf das nächste Element und zusätzlich auf das Set, in dem es enthalten ist. \t{find()} gibt einfach den Zeiger das enthaltende Set zurück. \t{union()} hängt die beiden Listen aneinander und überschreibt alle Zeiger auf eins der Sets. Auch Baumimplementierung ist möglich.
+\textbf{Implementierung}: Als Linked List: Set = Liste. Jedes Element zeigt auf auf das nächste Element und zusätzlich auf das Set, in dem es enthalten ist. \t{find()} gibt einfach den Zeiger auf das enthaltende Set zurück. \t{union()} hängt die beiden Listen aneinander und überschreibt alle Zeiger auf eins der Sets. Auch Baumimplementierung ist möglich.
 %TODO Baumimplementierung, Pfadkomprimierung
 
 \subsection{Augmentierung/Abänderung}
@@ -347,7 +347,7 @@ Im schlimmsten Fall $\frac{n}{2}(n-1)$\\
 \subsection{Quicksort $\O(n^2)$, avg: $\O(n\log n)$}
 \begin{enumerate}
 	\item Wähle ein Pivotelement, welches die Liste in zwei Hälften teilt. 
-	\item Sortiere die Liste so um, das Elemente die kleiner als das Pivotelement in der einen Hälfte und größere in der anderen Hälfte sind. 
+	\item Sortiere die Liste so um, dass Elemente, die kleiner als das Pivotelement, in der einen Hälfte und größere in der anderen Hälfte sind. 
 		Suche dazu mit zwei Laufvariablen das Feld ab, bis jede eine unpassende Variable gefunden hat, dann tausche diese.
 	\item Wiederhole die Schritte 1. bis 3. mit beiden Teillisten, bis jede Teilliste sortiert ist.
 \end{enumerate}
@@ -375,16 +375,16 @@ Im schlimmsten Fall $\frac{n}{2}(n-1)$\\
 
 \subsection{Mergesort $T(n) = 2T(\fr{n}{2}) + \O(n) \Rightarrow \O(n\log n)$}
 Feld in der Mitte rekursiv halbieren, bis Feldlänge = 1\\
-Teilsortierte Felder zusammenfügen(Reißverschluss)\\
+Teilsortierte Felder zusammenfügen (Reißverschluss)\\
 
 \parbox{4.5cm}{
 \t{mergeSort(List* a)\\
 1.	if (a$\rightarrow$length() $<$= 1)\\
 2.	\quad return a;\\
-2.	List* b = a$\rightarrow$half();\\
-3.	a = mergeSort(a);\\
-4.	b = mergeSort(b);\\
-5.	return merge(a,b);\\
+3.	List* b = a$\rightarrow$half();\\
+4.	a = mergeSort(a);\\
+5.	b = mergeSort(b);\\
+6.	return merge(a,b);\\
 \\
 half()\\
 1.	Node* ptr = head;\\
@@ -393,7 +393,7 @@ half()\\
 4.	List* L = new List(ptr$\rightarrow$next);\\
 5.	ptr$\rightarrow$next = NULL;\\
 6.	return L;
-}}\hspace{-1.25cm}
+}}\hspace{-1.2cm}
 \parbox{3.5cm}{
 \t{\textit{elAt() entspricht elementAt()}
 merge(a, b)\\
@@ -466,7 +466,7 @@ Vergleichende Sortieralgorithmen brauchen mindestens $\Omega(n \log_2 n)$ Vergle
 Laufzeit: $\mathcal O(n)$, geeignet für statische kleine Mengen\\
 \textbf{binäres Suchen:} Vorsortieren, Vergleich mit Mitte\\
 Laufzeit: $\mathcal O(\log n)$, geeignet für statische große Mengen\\
-\textbf{binärer Suchbaum} für dynamische Mengen\\
+\textbf{binärer Suchbaum:} für dynamische Mengen\\
 
 \iffalse
 	\subsection{String-matching}
@@ -506,7 +506,7 @@ Anzahl der eintretenden Kanten in $v$ heißt Eingangsgrad: $indeg(v)$\\
 Anzahl der austretenden Kanten aus $v$ heißt Ausgangsgrad: $outdeg(v)$\\
 
 stark zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
-starke Zusammenhangskomponente: stark Zusammenhängender Teilgraph\\
+starke Zusammenhangskomponente: stark zusammenhängender Teilgraph\\
 
 \parbox{3.6cm}{
 	Gibt alle zusammenhängenden\\ Komponenten eines gerichteten\\ Graphen aus\\
@@ -531,8 +531,8 @@ starke Zusammenhangskomponente: stark Zusammenhängender Teilgraph\\
 	9.	\quad repeat\\
 	10.	\quad \quad x = \$.pop();\\
 	11.	\quad \quad // add x to current component\\
-	11. \quad until (v == x) \\
-	12. \quad // print current component\\
+	12. \quad until (v == x) \\
+	13. \quad // print current component\\
 }}
 
 \subsubsection{Ungerichteter Graph}
@@ -544,7 +544,7 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 	Kruskal-Algorithmus ($\O(m\log n)$):
 	\begin{enumerate}\itemsep-2pt
 		\item Sortiere alle Kanten aufsteigend nach Gewicht.
-		\item Wähle immer die nächst schwerere Kante, wenn sie keine Schleife bildet.
+		\item Wähle immer die nächst schwerere Kante, falls sie keine Schleife bildet.
 	\end{enumerate}
 	
 	\parbox{3.6cm}{
@@ -618,7 +618,7 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 	}}
 
 \subsection{Bäume}
-... sind spezielle Graphen mit einer Wurzel, Zweigen und Blätter.\\
+... sind spezielle Graphen mit einer Wurzel, Zweigen und Blättern.\\
 Er besitzt keine zyklischen Strukturen und ist zusammenhängend.\\
 
 Begriffe:\\
@@ -633,7 +633,7 @@ Begriffe:\\
 Ein Binärbaum ist vollständig, wenn $\forall v: deg(v) = 2 \ \lor \ deg(v)=0$\\ 
 Falls Höhe $k$, dann gilt: $2^{k+1} - 1$ Knoten und $2^k$ Blätter.\\ 
 \\
-Bedeutung: Verdopllung der Eingabegröße, mit logarithmischer Vergrößerung der Struktur.\\
+Bedeutung: Verdopplung der Eingabegröße, mit logarithmischer Vergrößerung der Struktur.\\
 Binärbaum als verkettete Liste: Knoten $x$ mit $links[x],rechts[x], parent[x], key[x]$\\
 
 Balancierter Suchbaum: Höhe des Baumes ist immer in $\mathcal O(\log n)$\\
@@ -644,16 +644,16 @@ Blattknoten sind Dummys ohne Daten. Jeder interne Knoten hat genau zwei Kinder
 Jeder Knoten speichert die Balance $v = h(\text{linkes Kind}) - h(\text{rechtes Kind})$\\
 \textbf{Rotationen:}\\
 \parbox{.5\linewidth}{
-Nach Links: Rechtes Kind wird Wurzel, Wurzel wird linkes Kind der neuen Wurzel, Altes linkes Kind der neuen Wurzel wird rechtes Kind der alten Wurzel.}\parbox{.5\linewidth}{\vspace{-.3cm}
+Nach links: Rechtes Kind wird Wurzel, Wurzel wird linkes Kind der neuen Wurzel, Altes linkes Kind der neuen Wurzel wird rechtes Kind der alten Wurzel.}\parbox{.5\linewidth}{\vspace{-.3cm}
 \includegraphics[width=\linewidth]{img/avl-rotate}}\\
-Nach Rechts: Umkehrung der Rotation nach links\\
+Nach rechts: Umkehrung der Rotation nach links\\
 \textbf{Einfügen:}\\
 1. Knoten einfügen wie in normalen BSB\\
-2. Vom Elternknoten des eingefügten Knotens aufsteigend die Balance aller Knoten bis zur Wurzel prüfen und bei bedarf die AVL-Bedingung wiederherstellen\\
+2. Vom Elternknoten des eingefügten Knotens aufsteigend die Balance aller Knoten bis zur Wurzel prüfen und bei Bedarf die AVL-Bedingung wiederherstellen\\
 \textbf{Löschen:}\\
 1. Knoten löschen wie im normalen BSB\\
 2. Vom Elternknoten des überbrücken Knotens aufsteigend die Balance aller Knoten bis zur Wurzel prüfen und bei Bedarf die AVL-Bedingung wiederherstellen\\
-\textbf{Balance eines Knoten wiederherstellen:}\\
+\textbf{Balance eines Knotens wiederherstellen:}\\
 \t{
  1\ Balance(v)\\
  2\ if (v->balance == -2)\\
@@ -715,7 +715,7 @@ Verkettete Hashtabelle: Jedes Feld entspricht einer Liste die mehrere kollidiert
 \section{Fouriertransformation}
 Transformation eines periodischen Signals aus dem Zeit in den Frequenzbereich $\rightarrow$ Darstellung als Überlagerung von Sinus- und Kosinusfunktionen\\
 \textbf{Theorem:}\\
-Jede periodische Funktion $x(t)$ mit Periode $T$ lässt sich als $\sum_{i=-\infty}^\infty \alpha_i e^{j\frac{2\pi}{T}t}$
+Jede periodische Funktion $x(t)$ mit Periode $T$ lässt sich als $\sum_{i=-\infty}^\infty \alpha_i e^{j\frac{2\pi}{T}t}$ schreiben.
 \subsection{Diskrete Fouriertransformation (DFT)}
 Fouriertransformation ist Integration über alle komplexen Exponentialfunktionen $\Rightarrow$ Näherung über Summe entlang des Einheitskreises (mit $n-ten$ Einheitswurzeln)\\
 \textbf{Geg.:} $x_0, ..., x_{N-1}$ mit $x_k = x(\frac{T}{N}k)$.
