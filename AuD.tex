@@ -593,12 +593,7 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 	10.	foreach (x,y) $\in$ E\\
 	11.	\quad	if (y$\rightarrow$key $>$ x$\rightarrow$key + w(x,y))\\
 	12.	\quad \quad		y$\rightarrow$par = x;\\
-	\ \\
-	mark(x)\\
-	1.	if (x$\rightarrow$key != -$\infty$)\\
-	2.	\quad	x$\rightarrow$key = -$\infty$;\\
-	3.	\quad	for ((x,y) $\in$ E) mark(y)\\
-	}}\hspace{-.2cm}
+	}}
 	\parbox{3.5cm}{
 	\t{APSP - Floyd Warshall \\
 	Laufzeit: $\O(m\cdot n^2)$\\
