@@ -171,8 +171,8 @@ $f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösunge
 \begin{itemize}
 	\item Falls $f(n) \in \mathcal{O}\left( n^{\log_b a - \varepsilon} \right)$\\
 		Dann ist $T(n) \in \Theta\left( n^{\log_b a} \right)$
-	\item Falls $f(n) \in \Theta\left( n^{\log_b a} \right)$\\
-		Dann ist $T(n) \in \Theta\left( n^{\log_b a} \log(n)\right)$
+	\item Falls $f(n) \in \Theta\left( n^{\log_b a}\log{(n)}^k \right)$\\
+		Dann ist $T(n) \in \Theta\left( n^{\log_b a} \log(n)^{k+1}\right)$
 	\item Falls $f(n) \in \Omega\left( n^{\log_b a + \varepsilon} \right)$\\
 		Dann ist $T(n) \in \Theta(f(n))$ 
 \end{itemize}
