@@ -40,7 +40,7 @@ $R$ heißt Äquivalenzrelation, falls $R$ reflexiv, symmetrisch und transitiv is
 Eine partielle Ordnung heißt totale Ordnung, falls alle Elemente miteinander vergleichbar sind.\\
 \fi
 
-\subsection{Allgemeines}
+\section{Allgemeines}
 Auf/Abrunden: $x-1 < \lfloor x \rfloor \le x \le \lceil x \rceil < x+1$\\
 $\lfloor 3,7 \rfloor = 3$ \qquad $\lceil 3,1 \rceil = 4$ \qquad $\lceil \frac{a}{b} \rceil \le \frac{a+(b-1)}{b}$\\[0.5em]
 Modulo \boxed{ a\% n = a\mod n = a - \left(\left\lfloor \frac{a}{n} \right\rfloor \cdot n\right) }\\
@@ -167,16 +167,16 @@ $\Theta (2^n)$ & exponentiell & Traveling Salesman\\
 Gegeben: \boxed{ T(n) = a \cdot T\left(\frac{n}{b}\right) + f(n)$ mit $a \ge 1, b > 1 }\\ 
 $a\ge1$: Anzahl der Unterprobleme innerhalb einer Rekursionstiefe (meist 1 oder 2) \\
 $b>1$: Faktor, um den jedes Unterproblem verkleinert ist.\\
+$\epsilon>0:$ Eine beliebige Konstante.\\
 $f(n)$: Aufwand der durch Division des Problems und Kombination der Teillösungen entsteht (nicht rekursiver Anteil, von $T(n)$ unabhängig).\\
-\begin{itemize}
-	\item Falls $f(n) \in \mathcal{O}\left( n^{\log_b a - \varepsilon} \right)$\\
+\begin{enumerate}
+	\item Fall: $f(n) \in \mathcal{O}\left( n^{\log_b (a) - \varepsilon} \right)$\\
 		Dann ist $T(n) \in \Theta\left( n^{\log_b a} \right)$
-	\item Falls $f(n) \in \Theta\left( n^{\log_b a}\log{(n)}^k \right)$\\
+	\item Fall: $f(n) \in \Theta\left( n^{\log_b a}\log{(n)}^k \right)$\\
 		Dann ist $T(n) \in \Theta\left( n^{\log_b a} \log(n)^{k+1}\right)$
-	\item Falls $f(n) \in \Omega\left( n^{\log_b a + \varepsilon} \right)$\\
+	\item Fall: $f(n) \in \Omega\left( n^{\log_b a + \varepsilon} \right)$\\
 		Dann ist $T(n) \in \Theta(f(n))$ 
-\end{itemize}
-
+\end{enumerate}
 	\subsection{Robustheit}
 	Die Robustheit eines Algorithmus beschreibt die Fähigkeit auch bei ungünstigen Eingaben korrekt und effizient zu terminieren. 
 	\subsection{Korrektheit}
@@ -334,6 +334,7 @@ out-of-place: Zusätzlicher Speicher abhängig von $n$ nötig. $S:\mathcal O(f(n
 	\item Solange es kleiner als seine Vorgänger ist, tausche es.
 \end{enumerate}
 Im schlimmsten Fall $\frac{n}{2}(n-1)$\\
+\\Best-case: $\mathcal{O}(n)$, Worst-case: $\mathcal{O}(n^2)$\\
 \t{INSERTIONSORT(A)\\
 1\ for i = 2 to Länge(A) do\\
 2\ \quad key $\leftarrow$ A[i]\\
@@ -491,6 +492,7 @@ Bei ungerichtetem Graph symmetrisch, sinnvoll wenn Graph fast vollständig\\
 
 \textbf{Ungerichteter Graph:} Richtung der Kante spielt keine Rolle\\
 \textbf{Gerichteter Graph:} Richtung der Kante spielt eine Rolle, Schleifen möglich $(u, u)$ mit $u \in V$\\
+\textbf{DAG:} Directed acyclic graph.\\
 
 \subsection{Eigenschaften}
 $v$ \textbf{adjazent} zu $u$: $(u,v) \in E$ bzw. $\{u, v\} \in E$ für $u, v \in V$\\
@@ -617,7 +619,7 @@ zusammenhängend: jeder Knoten ist von jedem anderen Knoten erreichbar\\
 Er besitzt keine zyklischen Strukturen und ist zusammenhängend.\\
 
 Begriffe:\\
-\textbf{Grad} deg(v): Anzahl der Unterbäume(Äste)\\
+\textbf{Grad} deg(v): Anzahl der Kinder (direkten Nachfolger)\\
 \textbf{Blatt:} Knoten mit $deg(v) = 0$\\
 \textbf{Tiefe} $d(v)$: Länge des Pfades von der Wurzel bis zum Knoten $v$.\\ 
 \textbf{Höhe} $h(v)$: Längster Pfad von $v$ zu einem Blatt.\\   
