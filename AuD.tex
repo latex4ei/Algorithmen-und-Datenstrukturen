@@ -195,11 +195,11 @@ Landau-Symbole:\\
 \begin{tabular}{l|l|l}
 Notation & Grenzwertdef. (falls existent) & Wachstum \\
 \brule
-$g \in \mathcal O (f)$ & $0 \leq \lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} < \infty$ & nicht schneller als $f$\\
-$g \in \Omega (f)$ & $0 < \lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} \leq \infty$ & nicht langsamer als $f$\\
-$g \in \Theta (f)$ & $0 < \lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} < \infty$ & gleich wie $f$\\
-$g \in o(f)$ & $\lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} = 0$ & langsamer als $f$\\
-$g \in \omega (f)$ & $\lim_{n \rightarrow \infty}\fr{g(n)}{f(n)} = \infty$ & schneller als $f$\\
+$f \in \mathcal O (g)$ & $0 \leq \lim_{n \rightarrow \infty}\fr{f(n)}{g(n)} < \infty$ & nicht schneller als $g$\\
+$f \in \Omega (g)$ & $0 < \lim_{n \rightarrow \infty}\fr{f(n)}{g(n)} \leq \infty$ & nicht langsamer als $g$\\
+$f \in \Theta (g)$ & $0 < \lim_{n \rightarrow \infty}\fr{f(n)}{g(n)} < \infty$ & gleich wie $g$\\
+$f \in o(g)$ & $\lim_{n \rightarrow \infty}\fr{f(n)}{g(n)} = 0$ & langsamer als $g$\\
+$f \in \omega (g)$ & $\lim_{n \rightarrow \infty}\fr{f(n)}{g(n)} = \infty$ & schneller als $g$\\
 \end{tabular}
 
 \subsubsection{Rechenregeln}
@@ -348,16 +348,65 @@ DEQUEUE(Q)\\
 
 \textbf{Priority Queue:} Queue mit zugeordnetem Schlüssel, Entfernen von Element mit minimalem Schlüssel, Speicherung in fast vollständigem Binärbaum\\
 
-\subsection{Feld/Liste}
-\begin{tabular}{ll}
-\t{elementAt(i)}& Element in Position \t{i}\\
-\t{insert(d, i)}& Element \t{d} an Position \t{i} einfügen\\
-\t{erase(i)}& Element an Position \t{i} entfernen\\
-\t{size()}& Gibt Größe/Länge des Feldes zurück\\
+\subsection{Container (C++)}
+\begin{itemize}
+	\item \text{Sequenzielle Container (array, vector, list, forward\_list, deque)}
+	\item \text{Assoziative Container (set, map, multiset, multimap)} \\ \textit{geordnet/es gibt eine Reihenfolge}
+	\item \text{Ungeordnete assoziative Container (unordered\_set, unordered\_map, ...)} \\ \textit{effizienter durch Hashing}
+\end{itemize}
 
+\subsubsection{Array (Feld)}
+Deklaration: \texttt{array<type, size> name;}\\
+\begin{tabular}{ll}
+\texttt{at(i)}& Element an Position \texttt{i}\\
+\texttt{size()}& Gibt die Größe/Länge des Arrays zurück\\
 \end{tabular}
 
-\subsubsection{Vorteile und Nachteile der Implementierungen}
+\subsubsection{Vector (dynamisches Array)}
+Dynamisches Array, das bei Bedarf mitwächst\\ \\
+Deklaration: \texttt{vector<type> name;}\\
+\begin{tabular}{ll}
+\texttt{push\_back(x)}& \texttt{x} hinten einfügen\\
+\texttt{pop\_back()}& Hinterstes Element entfernen\\
+\texttt{size()}& Gibt die Größe/Länge des Vektors zurück\\
+\texttt{resize(new\_size)}& Größe des Vektors ändern\\
+\end{tabular}
+
+\subsubsection{Map (Abbildung/Wörterbuch)}
+Schlüssel-Wert-Paare, jeder Schlüssel verweist auf einen bestimmten Wert\\ \\
+Deklaration: \texttt{map<key\_type, value\_type> name;}\\
+\begin{tabular}{ll}
+\texttt{name[key] = value}& Wert von \texttt{key} ändern\\
+\texttt{for (auto\& n : name)}& Durch alle Paare der Map iterieren\\
+\texttt{n.first}& Derzeitigen Schlüssel ausgeben (im for-loop)\\
+\texttt{n.second}& Derzeitigen Wert ausgeben (im for-loop)\\
+\end{tabular}
+
+\subsubsection{Set (Menge)}
+Es gibt keine doppelten Einträge!\\ \\
+Deklaration: \texttt{set<type> name;}\\
+\begin{tabular}{ll}
+\texttt{insert(x)}& \texttt{x} einfügen\\
+\texttt{size()}& Gibt die Größe/Länge des Sets zurück\\
+\texttt{erase(x)}& \texttt{x} entfernen\\
+\end{tabular}
+
+
+\subsection{Iteratoren (C++)}
+Ermöglichen das Durchlaufen eines Containers.
+Verhalten sich ähnlich wie Zeiger.\\ \\
+\begin{tabular}{ll}
+\texttt{list.begin()}& Iterator zum ersten Element (Durchlauf von vorne)\\
+\texttt{list.end()}& Iterator hinter dem letzten Element (Durchlauf von vorne)\\
+\texttt{list.rbegin()}& Iterator zum letzten Element (Durchlauf von hinten)\\
+\texttt{list.rend()}& Iterator vor dem ersten Element (Durchlauf von hinten)\\
+\texttt{++it}& Zum nächsten Element\\
+\texttt{--it}& Zum vorherigen Element (bei bidirektionalen Iteratoren)\\
+\texttt{*it}& Wert des aktuellen Elements\\
+\end{tabular}
+
+
+\subsection{Vergleich zwischen verketteter Liste und Array}
 \begin{tabular}{l|l|l}
 DS & Vorteile & Nachteile \\
 \brule
@@ -382,7 +431,7 @@ Verwaltet die Partitionierung einer Menge in disjunkte Teilmengen.\\
 \end{tabular}
 \textbf{Implementierung}: Als Linked List: Set = Liste. Jedes Element zeigt auf auf das nächste Element und zusätzlich auf das Set, in dem es enthalten ist. \t{find()} gibt einfach den Zeiger auf das enthaltende Set zurück. \t{union()} hängt die beiden Listen aneinander und überschreibt alle Zeiger auf eins der Sets. Auch Baumimplementierung ist möglich.
 %TODO Baumimplementierung, Pfadkomprimierung
-
+\begin{minipage}{\linewidth}
 \subsection{Augmentierung/Abänderung}
 \begin{enumerate}
 	\item Wähle eine zugrundeliegende Datenstruktur
@@ -390,7 +439,7 @@ Verwaltet die Partitionierung einer Menge in disjunkte Teilmengen.\\
 	\item Zeige: Diese Informationen können effizient geupdated werden wenn die Datenstruktur geändert wird
 	\item Entwickle die Operationen
 \end{enumerate}
-
+\end{minipage}
 \section{Sortieralgorithmen}
 in-place: Nur konstanter Hilfsspeicher nötig. $S:\mathcal O(1)$\\
 out-of-place: Zusätzlicher Speicher abhängig von $n$ nötig. $S:\mathcal O(f(n))$\\
@@ -700,23 +749,26 @@ Falls Höhe $k$, dann gilt: $2^{k+1} - 1$ Knoten und $2^k$ Blätter.\\
 \\
 Bedeutung: Verdopplung der Eingabegröße, mit logarithmischer Vergrößerung der Struktur.\\
 Binärbaum als verkettete Liste: Knoten $x$ mit $links[x],rechts[x], parent[x], key[x]$\\
-
 Balancierter Suchbaum: Höhe des Baumes ist immer in $\mathcal O(\log n)$\\
 \subsubsection{AVL-Baum}
 Betrag der Differenz der Höhe der Teilbäume für jeden Knoten ist $\leq$ 1.\\
 AVL-Baum der Höhe $h$ enthält mindestens $F_{h+2}-1$ und höchstens $2^h - 1$ Knoten.
 Blattknoten sind Dummys ohne Daten. Jeder interne Knoten hat genau zwei Kinder
-Jeder Knoten speichert die Balance $v = h(\text{linkes Kind}) - h(\text{rechtes Kind})$\\
+Jeder Knoten speichert die Balance $v = h(\text{linkes Kind}) - h(\text{rechtes Kind})$ \\
 \textbf{Rotationen:}\\
 \parbox{.5\linewidth}{
 Nach links: Rechtes Kind wird Wurzel, Wurzel wird linkes Kind der neuen Wurzel, Altes linkes Kind der neuen Wurzel wird rechtes Kind der alten Wurzel.}\parbox{.5\linewidth}{\vspace{-.3cm}
 \includegraphics[width=\linewidth]{img/avl-rotate}}\\
 Nach rechts: Umkehrung der Rotation nach links\\
+\textbf{Doppelrotationen:}\\
+Double Left: Rechts dann Links\\
+Double Right: Links dann Rechts\\
+\textit{Zweite Rotation ist in der Ebene über der ersten.}\\
 \textbf{Einfügen:}\\
 1. Knoten einfügen wie in normalen BSB\\
 2. Vom Elternknoten des eingefügten Knotens aufsteigend die Balance aller Knoten bis zur Wurzel prüfen und bei Bedarf die AVL-Bedingung wiederherstellen\\
 \textbf{Löschen:}\\
-1. Knoten löschen wie im normalen BSB\\
+1. Knoten löschen wie im normalen BSB (kleinstes Element im rechten Teilbaum wird Nachfolger)\\
 2. Vom Elternknoten des überbrücken Knotens aufsteigend die Balance aller Knoten bis zur Wurzel prüfen und bei Bedarf die AVL-Bedingung wiederherstellen\\
 \textbf{Balance eines Knotens wiederherstellen:}\\
 \t{
@@ -739,8 +791,7 @@ Nach rechts: Umkehrung der Rotation nach links\\
 \subsubsection{Traversierung}
 Pre-order: Wurzel $\rightarrow$ linker Teilbaum $\rightarrow$ rechter Teilbaum\\
 In-order: linker Teilbaum $\rightarrow$ Wurzel $\rightarrow$ rechter Teilbaum\\
-Post-order: linker Teilbaum $\rightarrow$ rechter Teilbaum $\rightarrow$ Wurzel\\
-
+Post-order: linker Teilbaum $\rightarrow$ rechter Teilbaum $\rightarrow$ Wurzel
 \subsection{Suchen in Graphen}
 \textbf{Breitensuche(BFS)} $\Theta (\abs V + \abs E)$\\
 Von einem Startknoten $S$ werden alle noch nicht durchsuchten Knoten mit Abstand $k$ durchsucht. Der Suchradius breitet sich aus. Neue Knoten kommen in eine Queue an zu besuchenden Knoten.\\
@@ -756,26 +807,50 @@ Von einem Knoten werden alle Nachfolger rekursiv durchsucht. Mehrere Verzweigung
 Fast vollständiger Binärbaum mit Indizierung von links nach rechts und von oben nach unten.
 Wert eines Knotens ist immer kleiner bzw. größer als Werte der Kinder. 
 Max-Heap: Wurzel hat den größten Wert, Min-Heap: Wurzel hat den kleinsten Wert.\\
+\subsubsection{Operationen}
+\textbf{Einfügen:} Einfügen in unterste Ebene, linkste freie Stelle\\
+\textbf{Löschen:} Tauschen mit letztem Element, dann löschen\\
+Danach die Heapeigenschaft wiederherstellen mit:
+\begin{itemize}
+	\item BubbleUp: tausche mit Elternknoten
+	\item SiftDown: tausche mit größerem/kleinerem deiner Kinder
+\end{itemize}
+
 \textbf{Heap-Sort:}\\
 1. Erzeuge Max-Heap aus $A$\\
 2. Wähle $|A| / 2$ als Starknoten, da größter Knoten mit $deg > 1$\\
 3. Betrachte Knoten $i$ und seine beiden Kinder $2i$ und $2i+1$ \\
 
-\section{Hashtabellen}
-	... sind Felder bei denen die Position eines Objekts durch eine Hashfunktion berechnet wird. Da es zu Kollisionen kommen kann, werden in den Feldern nur Verweise auf eine Liste gespeichert.
+\section{Hashing}
+\subsection{Offene Adressierung}
+	Hashtabellen sind Felder bei denen die Position eines Objekts durch eine Hashfunktion berechnet wird.
 
-	Schlüssel: wird von einem Schlüsselgenerator aus den Daten generiert. 
-\subsection{Hashfunktion}
+	Schlüssel: wird von einem Schlüsselgenerator aus den Daten generiert. \\
+	\textbf{Vorteile:} Cache effizient, keine Zeiger, geringer Speicherverbrauch \\
+	\textbf{Nachteile:} Tabellengröße statisch, Löschoperationen schwieriger
+\subsubsection{Hashfunktion}
 	... ordnet jedem Schlüssel aus einer großen Schlüsselmenge einen möglichst eindeutigen Wert aus einer kleineren Indexmenge zu.
-	$h: key \ra index$
+	$h: key \ra index$\\
+	Ziel: Möglichst gleichmäßige Verteilung aller Elemente\\
 	
-Operatoren:
-Verkettete Hashtabelle: Jedes Feld entspricht einer Liste die mehrere kollidierte Daten speichern kann. 
+	\textbf{Möglichkeiten für $h(k,i)$:}
+	\begin{itemize}
+		\item Lineares Sondieren: $h(k,i)=h(k)+i\text{ mod }n$
+		\item Quadratisches Sondieren: $h(k,i)=h(k)+c_1i+c_2i^2 \text{ mod } n$
+		\item Doppeltes Hashing: $h(k,i)=h_1(k)+ih_2(k) \text{ mod } n$
+	\end{itemize}
+\subsection{Hashing mit Verkettung}
+Verkettete Hashtabelle: Jedes Feld entspricht einer Liste die mehrere kollidierte Daten speichern kann (Länge: $\frac{m}{n}$). Die Hashfunktion ist hier oft Typ-abhängig.\\
+	\textbf{Vorteile:} beliebige Anzahl an Elementen, Löschen einfach implementierbar \\
+	\textbf{Nachteile:} Zeiger erhöhen Speicherverbrauch, schlechte Cache-Effizienz
+	\\
+
 \begin{description}
 	\item[chained-hash-insert(T,x)]: Füge $x$ an den Kopf der Liste $T[ h(x.schluessel)]$
 	\item[chained-hash-search(T,k)]: Suche Element $k$ in der Liste $T[ h(k) ]$
 	\item[chained-hash-delete(T,x)]: entferne $x$ aus der Liste $T[h(x.schluessel)]$
 \end{description}
+Bsp.: \t{unordered\_map}
 
 \section{Fouriertransformation}
 Transformation eines periodischen Signals aus dem Zeit in den Frequenzbereich $\rightarrow$ Darstellung als Überlagerung von Sinus- und Kosinusfunktionen\\
