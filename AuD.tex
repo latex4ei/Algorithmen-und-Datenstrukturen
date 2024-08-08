@@ -348,55 +348,65 @@ DEQUEUE(Q)\\
 
 \textbf{Priority Queue:} Queue mit zugeordnetem Schlüssel, Entfernen von Element mit minimalem Schlüssel, Speicherung in fast vollständigem Binärbaum\\
 
-\subsection{Container}
+\subsection{Container (C++)}
 \begin{itemize}
 	\item \text{Sequenzielle Container (array, vector, list, forward\_list, deque)}
 	\item \text{Assoziative Container (set, map, multiset, multimap)} \\ \textit{geordnet/es gibt eine Reihenfolge}
-	\item \text{Ungeordnete assoziative Container (unordered\_set, unordered\_map, ...)} \\\textit{effizienter durch Hashing}
+	\item \text{Ungeordnete assoziative Container (unordered\_set, unordered\_map, ...)} \\ \textit{effizienter durch Hashing}
 \end{itemize}
 
 \subsubsection{Array (Feld)}
-Deklaration: \t{array<type, size> name;}\\
+Deklaration: \texttt{array<type, size> name;}\\
 \begin{tabular}{ll}
-\t{elementAt(i)}& Element in Position \t{i}\\
-\t{insert(d, i)}& Element \t{d} an Position \t{i} einfügen\\
-\t{erase(i)}& Element an Position \t{i} entfernen\\
-\t{size()}& Gibt Größe/Länge des Feldes zurück\\
-
+\texttt{at(i)}& Element an Position \texttt{i}\\
+\texttt{size()}& Gibt die Größe/Länge des Arrays zurück\\
 \end{tabular}
-\subsubsection{Vector (dynamisches Array)}
-dynamisches Array, das bei Bedarf mitwächst\\ \\
-Deklaration: \t{vector<type> name;}\\
-\begin{tabular}{ll}
-\t{push\_back(x)}& \t{x} hinten einfügen\\
-\t{pop\_back(x)}& Hinterstes Element entfernen\\
-\t{size()}& Gibt Größe/Länge des dyn. Arrays zurück\\
-\t{resize()}& Speicher an Größe anpassen.\\
 
+\subsubsection{Vector (dynamisches Array)}
+Dynamisches Array, das bei Bedarf mitwächst\\ \\
+Deklaration: \texttt{vector<type> name;}\\
+\begin{tabular}{ll}
+\texttt{push\_back(x)}& \texttt{x} hinten einfügen\\
+\texttt{pop\_back()}& Hinterstes Element entfernen\\
+\texttt{size()}& Gibt die Größe/Länge des Vektors zurück\\
+\texttt{resize(new\_size)}& Größe des Vektors ändern\\
 \end{tabular}
 
 \subsubsection{Map (Abbildung/Wörterbuch)}
 Schlüssel-Wert-Paare, jeder Schlüssel verweist auf einen bestimmten Wert\\ \\
-Deklaration: \t{map<key\_type, value\_type> name;}\\
+Deklaration: \texttt{map<key\_type, value\_type> name;}\\
 \begin{tabular}{ll}
-\t{name[key] = value}& Wert von \t{key} ändern\\
-\t{for (auto n : name)}& Durch alle Paare der Map iterieren.\\
-\t{n.first()}& derzeitigen key ausgeben (for-loop)\\
-\t{n.second()}& derzeitiges value ausgeben (for-loop)\\
-
+\texttt{name[key] = value}& Wert von \texttt{key} ändern\\
+\texttt{for (auto\& n : name)}& Durch alle Paare der Map iterieren\\
+\texttt{n.first}& Derzeitigen Schlüssel ausgeben (im for-loop)\\
+\texttt{n.second}& Derzeitigen Wert ausgeben (im for-loop)\\
 \end{tabular}
 
 \subsubsection{Set (Menge)}
 Es gibt keine doppelten Einträge!\\ \\
-Deklaration: \t{set<type> name;}\\
+Deklaration: \texttt{set<type> name;}\\
 \begin{tabular}{ll}
-\t{name.insert(x)}& \t{x} einfügen\\
-\t{size()}& Gibt Größe/Länge des Sets zurück\\
-
+\texttt{insert(x)}& \texttt{x} einfügen\\
+\texttt{size()}& Gibt die Größe/Länge des Sets zurück\\
+\texttt{erase(x)}& \texttt{x} entfernen\\
 \end{tabular}
 
 
-\subsubsection{Vorteile und Nachteile der Implementierungen}
+\subsection{Iteratoren (C++)}
+Ermöglichen das Durchlaufen eines Containers.
+Verhalten sich ähnlich wie Zeiger.\\ \\
+\begin{tabular}{ll}
+\texttt{list.begin()}& Iterator zum ersten Element (Durchlauf von vorne)\\
+\texttt{list.end()}& Iterator hinter dem letzten Element (Durchlauf von vorne)\\
+\texttt{list.rbegin()}& Iterator zum letzten Element (Durchlauf von hinten)\\
+\texttt{list.rend()}& Iterator vor dem ersten Element (Durchlauf von hinten)\\
+\texttt{++it}& Zum nächsten Element\\
+\texttt{--it}& Zum vorherigen Element (bei bidirektionalen Iteratoren)\\
+\texttt{*it}& Wert des aktuellen Elements\\
+\end{tabular}
+
+
+\subsection{Vergleich zwischen verketteter Liste und Array}
 \begin{tabular}{l|l|l}
 DS & Vorteile & Nachteile \\
 \brule
@@ -411,19 +421,6 @@ Doubly & Durchlauf beide Richtungen & zusätzlicher Speicher für Ptr\\
 Linked & Einfügen/Löschen einfacher & Referenzverw. aufwändig\\
 List & & \\
 \end{tabular}
-
-\subsection{Iteratoren (C++)}
-Ermöglichen das Durchlaufen einer Liste.
-Verhalten sich wie Pointer.\\ \\
-\begin{tabular}{ll}
-\t{list.begin()}& Startiterator (Durchlauf von vorne)\\
-\t{list.end()}& Enditerator (Durchlauf von vorne)\\
-\t{list.rbegin()}& Startiterator (Durchlauf von hinten)\\
-\t{list.rend()}& Enditerator (Durchlauf von hinten)\\
-\t{++it}& Nächstes Element\\
-\t{*it}& Aktuellen Wert ausgeben\\
-\end{tabular}
-
 
 \subsection{Union Find}
 Verwaltet die Partitionierung einer Menge in disjunkte Teilmengen.\\
