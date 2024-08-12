@@ -822,17 +822,14 @@ Danach die Heapeigenschaft wiederherstellen mit:
 3. Betrachte Knoten $i$ und seine beiden Kinder $2i$ und $2i+1$ \\
 
 \section{Hashing}
+Hashing ist ein Verfahren, bei dem eine Eingabe (Schlüssel) durch eine Hash-Funktion in einen Speicherplatz (Hash-Wert) umgewandelt wird.
 \subsection{Offene Adressierung}
-	Hashtabellen sind Felder bei denen die Position eines Objekts durch eine Hashfunktion berechnet wird.
-
-	Schlüssel: wird von einem Schlüsselgenerator aus den Daten generiert. \\
-	\textbf{Vorteile:} Cache effizient, keine Zeiger, geringer Speicherverbrauch \\
-	\textbf{Nachteile:} Tabellengröße statisch, Löschoperationen schwieriger
+	Position eines Objekts wird innerhalb der Hashtabelle durch eine Hash-Funktion bestimmt.\\
+	\textbf{Vorteile:} Cache-effizient, keine Zeiger, geringer Speicherverbrauch \\
+	\textbf{Nachteile:} Tabellengröße ist im Voraus festgelegt, Löschoperationen sind schwieriger zu implementieren
 \subsubsection{Hashfunktion}
-	... ordnet jedem Schlüssel aus einer großen Schlüsselmenge einen möglichst eindeutigen Wert aus einer kleineren Indexmenge zu.
-	$h: key \ra index$\\
-	Ziel: Möglichst gleichmäßige Verteilung aller Elemente\\
-	
+	... weist jedem Schlüssel aus einer großen Schlüsselmenge einen Wert aus einer kleineren Indexmenge zu.\\
+	Ziel: möglichst gleichmäßige Verteilung aller Elemente.\\
 	\textbf{Möglichkeiten für $h(k,i)$:}
 	\begin{itemize}
 		\item Lineares Sondieren: $h(k,i)=h(k)+i\text{ mod }n$
@@ -840,11 +837,9 @@ Danach die Heapeigenschaft wiederherstellen mit:
 		\item Doppeltes Hashing: $h(k,i)=h_1(k)+ih_2(k) \text{ mod } n$
 	\end{itemize}
 \subsection{Hashing mit Verkettung}
-Verkettete Hashtabelle: Jedes Feld entspricht einer Liste die mehrere kollidierte Daten speichern kann (Länge: $\frac{m}{n}$). Die Hashfunktion ist hier oft Typ-abhängig.\\
-	\textbf{Vorteile:} beliebige Anzahl an Elementen, Löschen einfach implementierbar \\
-	\textbf{Nachteile:} Zeiger erhöhen Speicherverbrauch, schlechte Cache-Effizienz
-	\\
-
+Jeder Eintrag wird in der Hashtabelle durch eine Liste von Schlüsseln repräsentiert, die denselben Hash-Wert haben (durchschnittliche Listenlänge: $\frac{m}{n}$). Die Hashfunktion ist hier meist Typ-abhängig.\\
+	\textbf{Vorteile:} Beliebige Anzahl an Elementen pro Position, Löschen einfach implementierbar \\
+	\textbf{Nachteile:} Zeiger erhöhen Speicherverbrauch, geringere Cache-Effizienz durch verteilte Speicherorte
 \begin{description}
 	\item[chained-hash-insert(T,x)]: Füge $x$ an den Kopf der Liste $T[ h(x.schluessel)]$
 	\item[chained-hash-search(T,k)]: Suche Element $k$ in der Liste $T[ h(k) ]$
